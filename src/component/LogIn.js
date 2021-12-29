@@ -41,19 +41,17 @@ const LogIn = () => {
     }
 
     return(
-        <div className="log_in">
-            <form onSubmit={(e) = handleSubmit(e)}>
-                <FormField field_name="email"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onEmailChange} />
-                <FormField field_name="password"
-                    field_type="password"
-                    field_req={true}
-                    handleChange={onPasswordChange} />
-                <input type="submit" className="submit" value="submit" />
-            </form>
-        </div>
+        <form className="log_in" onSubmit={(e) = handleSubmit(e)}>
+            <FormField field_name="email"
+                field_type="text"
+                field_req={true}
+                handleChange={onEmailChange} />
+            <FormField field_name="password"
+                field_type="password"
+                field_req={true}
+                handleChange={onPasswordChange} />
+            <input type="submit" className="submit" value="submit" />
+        </form>
     )
 }
 

@@ -71,7 +71,7 @@ const SignUp = () => {
     }
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)} className="sign_up">
+        <form className="sign_up" onSubmit={(e) => handleSubmit(e)}>
             <FormField field_name="first_name"
                 field_type="text"
                 field_req={true}
