@@ -41,7 +41,7 @@ const LogIn = () => {
     }
 
     return(
-        <form className="log_in" onSubmit={(e) = handleSubmit(e)}>
+        <form className="log_in" onSubmit={(e) => handleSubmit(e)}>
             <FormField field_name="email"
                 field_type="text"
                 field_req={true}

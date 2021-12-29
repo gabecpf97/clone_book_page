@@ -8,7 +8,7 @@ const SignUp = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [confirm_password, setConfirm_password] = useState();
-    const [private, setPrivate] = useState(true);
+    const [isPrivate, setIsPrivate] = useState(true);
 
     const onFNchange = (e) => {
         setFirst_name(e.target.value);
@@ -35,7 +35,7 @@ const SignUp = () => {
     }
 
     const onPrivateChange = (e) => {
-        setPrivate(e.target.value);
+        setIsPrivate(e.target.value);
     }
 
     const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ const SignUp = () => {
                         email,
                         password,
                         confirm_password,
-                        private
+                        private: isPrivate
                     }),
                     headers: {
                         "Content-Type": "application/json",
