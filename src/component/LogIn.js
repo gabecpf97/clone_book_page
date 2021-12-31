@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Errors from "./Errors";
 import FormField from "./FormField";
 
 const LogIn = () => {
+    const nav = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [errors, setErrors] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const login_api = async () => {
             try {
-                const response = await fetch(`api url`, {
+                const response = await fetch(`http://localhost:5000/user/login`, {
                     method: 'POST',
                     body: JSON.stringify({
                         email,
@@ -21,12 +25,14 @@ const LogIn = () => {
                 });
                 const res_data = await response.json();
                 if (res_data.err) {
-                    // handle error of server
+                    setErrors(res_data.err);
                 } else {
-                    // redirect to home page
+                    localStorage.setItem('token', res_data.token);
+                    localStorage.setItem('user', res_data.user);
+                    nav('/');
                 }
             } catch (err) {
-                //handle err of fail fetch
+                setErrors('Error in fetching data');
             }
         }
         login_api();
@@ -41,17 +47,22 @@ const LogIn = () => {
     }
 
     return(
-        <form className="log_in" onSubmit={(e) => handleSubmit(e)}>
-            <FormField field_name="email"
-                field_type="text"
-                field_req={true}
-                handleChange={onEmailChange} />
-            <FormField field_name="password"
-                field_type="password"
-                field_req={true}
-                handleChange={onPasswordChange} />
-            <input type="submit" className="submit" value="submit" />
-        </form>
+        <div className="log_in_div">
+            <form className="log_in" onSubmit={(e) => handleSubmit(e)}>
+                <FormField field_name="email"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onEmailChange} />
+                <FormField field_name="password"
+                    field_type="password"
+                    field_req={true}
+                    handleChange={onPasswordChange} />
+                <input type="submit" className="submit" value="submit" />
+            </form>
+            {errors && 
+                <Errors errors={errors} />
+            }
+        </div>
     )
 }
 
