@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Errors from "./Errors";
 import PostList from "./PostList";
+import { Link } from "react-router-dom";
 
 const Post = () => {
     const id = useParams().id;
@@ -34,14 +35,13 @@ const Post = () => {
             {post &&
                 <div>
                     <h1>{post.message}</h1>
-                    <p>{post.user.username}</p>
+                    <Link to={`/user/${post.user._id}`}>{post.user.username}</Link>
                     <p>{post.date}</p>
-                    {post.media && 
+                    {post.media[0] && 
                         <img crossOrigin="anonymos" 
                         src={`http://localhost:5000/media/?name=${post.media}`} alt="post_img" />
                     }
                     <p>likes: {post.likes.length}</p>
-                    {/* <p>{post.comments}</p> */}
                     <h2>Comments: </h2>
                     <PostList posts={post.comments} comment={true} />
                 </div>

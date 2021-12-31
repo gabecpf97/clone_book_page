@@ -8,16 +8,16 @@ const Errors = ({errors}) => {
 
     return(
         <div className="errors">
-            {errors[0] && 
+            {errors.length > 0 && 
                 <ul className="errors">
                     {errors.map(err => {
                         return (
-                            <li className="err" key={uniqid()}>{err.msg}</li>
+                            <li className="err" key={uniqid()}>{err}</li>
                         )
                     })}
                 </ul>
             }
-            {!errors[0] &&
+            {errors.length < 0 &&
                 <p>{errors}</p>
             }
         </div>
