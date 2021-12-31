@@ -36,14 +36,13 @@ const PostList = () => {
                             <p>{post.user.username}</p>
                             <h2>{post.message}</h2>
                             {post.media.length > 0 && 
-                                // <p>has media</p>
                                 <img crossOrigin="anonymous" src={image_url} alt="post_image"/>
                             }
                         </li>
                     )
                 })}
             </ul>
-            <Errors errors={errors} />
+            {errors &&  <Errors errors={errors} />}
         </div>
     )
 }

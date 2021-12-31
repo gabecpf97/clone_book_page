@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Errors from "./Errors";
 import FormField from "./FormField";
 
 const SignUp = () => {
+    const nav = useNavigate();
     const [first_name, setFirst_name] = useState();
     const [last_name, setLast_name] = useState();
     const [username, setUsername] = useState();
@@ -9,6 +12,8 @@ const SignUp = () => {
     const [password, setPassword] = useState();
     const [confirm_password, setConfirm_password] = useState();
     const [isPrivate, setIsPrivate] = useState(true);
+    const [icon, setIcon] = useState();
+    const [errors, setErrors] = useState();
 
     const onFNchange = (e) => {
         setFirst_name(e.target.value);
@@ -38,40 +43,44 @@ const SignUp = () => {
         setIsPrivate(e.target.value);
     }
 
+    const onIconChange = (e) => {
+        setIcon(e.target.files[0]);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        const data = new FormData();
+        data.append('username', username);
+        data.append('first_name', first_name);
+        data.append('last_name', last_name);
+        data.append('email', email);
+        data.append('password', password);
+        data.append('confirm_password', confirm_password);
+        data.append('private', isPrivate);
+        data.append('icon', icon);
         const signup_api = async () => {
             try {
-                const response = await fetch(`api url`, {
+                const response = await fetch(`http://localhost:5000/user/create`, {
                     method: "POST",
-                    body: JSON.stringify({
-                        username,
-                        first_name,
-                        last_name,
-                        email,
-                        password,
-                        confirm_password,
-                        private: isPrivate
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
+                    body: data,
                 });
                 const res_data = await response.json();
-                if (res_data.err) {
-                    // handle server error
+                if (res_data.errors) {
+                    setErrors(res_data.errors);
                 } else {
-                    // redirect to home page
+                    localStorage.setItem('token', res_data.token);
+                    localStorage.setItem('user', res_data.user);
+                    nav('/');
                 }
             } catch (err) {
-                // handle fetch error
+                setErrors('Error in fetching data');
             }
         }
         signup_api();
     }
 
     return (
-        <form className="sign_up" onSubmit={(e) => handleSubmit(e)}>
+        <form className="sign_up" encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
             <FormField field_name="first_name"
                 field_type="text"
                 field_req={true}
@@ -98,9 +107,14 @@ const SignUp = () => {
                 handleChange={onConfirmChange} />
             <FormField field_name="private"
                 field_type="checkbox"
-                field_req={true}
+                field_req={false}
                 handleChange={onPrivateChange} />
+            <FormField field_name="icon"
+                field_type="file"
+                field_req={false}
+                handleChange={onIconChange} />
             <input type="submit" className="submit" value="submit" />
+            {errors && <Errors errors={errors}/>}
         </form>
     )
 }
