@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Errors from "./Errors";
+import PostList from "./PostList";
 
 const Post = () => {
     const id = useParams().id;
@@ -16,7 +17,6 @@ const Post = () => {
                     }
                 });
                 const data = await response.json();
-                console.log(data);
                 if (data.err) {
                     setError(data.err);
                 } else {
@@ -40,8 +40,10 @@ const Post = () => {
                         <img crossOrigin="anonymos" 
                         src={`http://localhost:5000/media/?name=${post.media}`} alt="post_img" />
                     }
-                    <p>{post.likes.length}</p>
+                    <p>likes: {post.likes.length}</p>
                     {/* <p>{post.comments}</p> */}
+                    <h2>Comments: </h2>
+                    <PostList posts={post.comments} comment={true} />
                 </div>
             }
             {error && <Errors errors={error} />}
