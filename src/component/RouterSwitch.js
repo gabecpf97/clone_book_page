@@ -5,6 +5,7 @@ import LogIn from './LogIn';
 import SignUp from './SignUp';
 import NavBar from './NavBar';
 import LogOut from './LogOut';
+import Account from './Account';
 
 // Remeber to add /clone_book_page when deploy
 
@@ -24,6 +25,7 @@ const RouterSwitch = () => {
             <NavBar status={status}/>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/account" element={<Account />} />
                 <Route path="/sign_up" element={<SignUp handleChange={updateStatus}/>} />
                 <Route path="/log_in" element={<LogIn handleChange={updateStatus}/>} />
                 <Route path="/log_out" element={<LogOut handleChange={updateStatus}/>} />

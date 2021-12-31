@@ -22,6 +22,9 @@ const NavBar = ({ status }) => {
                         <Link className="page" to="/log_out">
                             <li>Log out</li>
                         </Link>
+                        <Link className="page" to="/account">
+                            <li>{JSON.parse(localStorage.user).username}</li>
+                        </Link>
                     </div>
                 }
             </ul>
