@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LogOut from "./LogOut";
 
-const NavBar = () => {
+const NavBar = ({ status }) => {
 
     return (
         <div className="nav_bar">
             <Link className="logo" to="/">CloneBook</Link>
             <ul className="pages">
-                {!localStorage.user && 
+                {!status && 
                     <div className="loged_in">
                         <Link className="page" to="/sign_up">
                             <li>Sign up</li>
@@ -18,10 +17,11 @@ const NavBar = () => {
                         </Link>
                     </div>
                 }
-                {localStorage.user && 
+                {status && 
                     <div className="visiter">
-                        <LogOut />
-
+                        <Link className="page" to="/log_out">
+                            <li>Log out</li>
+                        </Link>
                     </div>
                 }
             </ul>

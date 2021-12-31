@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
-const SignUp = () => {
+const SignUp = ({ handleChange }) => {
     const nav = useNavigate();
     const [first_name, setFirst_name] = useState();
     const [last_name, setLast_name] = useState();
@@ -70,6 +70,7 @@ const SignUp = () => {
                 } else {
                     localStorage.setItem('token', res_data.token);
                     localStorage.setItem('user', res_data.user);
+                    handleChange();
                     nav('/');
                 }
             } catch (err) {
