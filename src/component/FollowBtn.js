@@ -5,10 +5,10 @@ const FollowBtn = ({ handleAction, status }) => {
     return (
         <div className="follow_control">
             {status &&
-                <button onClick={handleAction()}>follow</button>
+                <button onClick={() => handleAction()}>follow</button>
             }
             {!status &&
-                <button onClick={handleAction()}>unfollow</button>
+                <button onClick={() => handleAction()}>unfollow</button>
             }
         </div>
     )

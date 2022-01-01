@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Errors from "./Errors";
+import FollowBtn from "./FollowBtn";
 import PostList from "./PostList";
 
 const User = () => {
@@ -11,6 +12,8 @@ const User = () => {
     const [errors, setErrors] = useState();
     const [loaded, setLoaded] = useState(false);
     const [isPrivate, setIsPrivate] = useState(false);
+    const [isPending, setIsPending] = useState(false);
+    const [hasPending, setHasPending] = useState();
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -24,6 +27,9 @@ const User = () => {
                 if (check_res.private) {
                     setIsPrivate(true);
                     setUser(check_res.username);
+                    if (check_res.pending) {
+                        setIsPending(true);
+                    }
                     setLoaded(true);
                 } else {
                     const data = await Promise.all([
@@ -50,25 +56,31 @@ const User = () => {
                         setLoaded(true);
                     }
                 }
-
             } catch (err) {
-                setErrors(err);
+                setErrors('server error');
             }
         };  
+        setLoaded(false);
         fetchPost();
     }, [id]);
 
-    const onFollow = async () => {
-        const response = await fetch(`http://localhost:5000/user/${id}/follow`, {
+    const onFollow = async (type) => {
+        const response = await fetch(`http://localhost:5000/user/${id}/${type}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             }
         });
         const data = await response.json();
+        // console.log(data);
         if (data.success) {
-            
+            console.log(data.success);
+        } else if (data.pending !== null) {
+            setIsPending(data.pending);
+        } else {
+            setErrors(data.message);
         }
+        // setRefresh(true);
     }
 
     return (
@@ -95,8 +107,15 @@ const User = () => {
                     {isPrivate && 
                         <div className="no_access">
                             <h1>{user} is private</h1>
+                            {!isPending &&
+                                <button onClick={() => onFollow('follow')}>follow</button>
+                            }
+                            {isPending &&
+                                <button onClick={() => onFollow('unfollow')}>remove request</button>
+                            }
                         </div>
                     }
+                    {errors && <Errors errors={errors} />}
                 </div>
             }
         </div>

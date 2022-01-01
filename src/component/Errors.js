@@ -8,7 +8,7 @@ const Errors = ({errors}) => {
 
     return(
         <div className="errors">
-            {errors.length > 0 && 
+            {errors.msg && 
                 <ul className="errors">
                     {errors.map(err => {
                         return (
@@ -17,7 +17,7 @@ const Errors = ({errors}) => {
                     })}
                 </ul>
             }
-            {errors.length < 0 &&
+            {!errors.msg &&
                 <p>{errors}</p>
             }
         </div>
