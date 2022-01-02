@@ -8,18 +8,12 @@ const Errors = ({errors}) => {
 
     return(
         <div className="errors">
-            {errors.msg && 
-                <ul className="errors">
-                    {errors.map(err => {
-                        return (
-                            <li className="err" key={uniqid()}>{err}</li>
-                        )
-                    })}
-                </ul>
+            {errors.err &&
+                <h2>{errors.err}</h2>
             }
-            {!errors.msg &&
-                <p>{errors}</p>
-            }
+            {errors.errors && errors.errors.map(error => {
+                return (<p key={uniqid()}>{error.msg}</p>)
+            })}
         </div>
     )
 }

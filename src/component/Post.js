@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Post = () => {
     const id = useParams().id;
     const [post, setPost] = useState();
-    const [error, setError] = useState();
+    const [errors, setErrors] = useState();
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -19,12 +19,12 @@ const Post = () => {
                 });
                 const data = await response.json();
                 if (data.err) {
-                    setError(data.err);
+                    setErrors(data);
                 } else {
                     setPost(data.post);
                 }
             } catch (err) {
-                setError('Error in fetching data');
+                setErrors({err: 'Error in fetching data, server problem'});
             }
         }
         fetchPost();
@@ -46,7 +46,7 @@ const Post = () => {
                     <PostList posts={post.comments} comment={true} />
                 </div>
             }
-            {error && <Errors errors={error} />}
+            {errors && <Errors errors={errors} />}
         </div>
     )
 }

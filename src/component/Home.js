@@ -15,12 +15,12 @@ const Home = () => {
                 });
                 const data = await response.json();
                 if (data.err) {
-                    setErrors(data.err);
+                    setErrors(data);
                 } else {
                     setPosts(data.all_posts);
                 }
             } catch (err) {
-                setErrors('Error in fetching data');
+                setErrors({err: 'Error in fetching data, server problem'});
             }
         }
         fetchPost();

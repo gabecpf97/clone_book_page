@@ -40,7 +40,7 @@ const SignUp = ({ handleChange }) => {
     }
 
     const onPrivateChange = (e) => {
-        setIsPrivate(e.target.value);
+        setIsPrivate(e.target.checked);
     }
 
     const onIconChange = (e) => {
@@ -65,16 +65,16 @@ const SignUp = ({ handleChange }) => {
                     body: data,
                 });
                 const res_data = await response.json();
-                if (res_data.errors) {
-                    setErrors(res_data.errors);
+                if (res_data.errors || res_data.err) {
+                    setErrors(res_data);
                 } else {
                     localStorage.setItem('token', res_data.token);
-                    localStorage.setItem('user', res_data.user);
+                    localStorage.setItem('user', JSON.stringify(res_data.user));
                     handleChange();
                     nav('/');
                 }
             } catch (err) {
-                setErrors('Error in fetching data');
+                setErrors({err: 'Error in fetching data, server problem'});
             }
         }
         signup_api();

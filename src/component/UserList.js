@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 const UserList = ({ type }) => {
-    const [error, setError] = useState();
+    const [errors, setErrors] = useState();
 
     useEffect(() => {
         const fetechList = async () => {
             try {
 
             } catch (err) {
-                setError('Fetching error please refresh');
+                setErrors({err: 'Error in fetching data, server problem'});
             }
         }
         fetechList();

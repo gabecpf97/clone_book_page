@@ -46,7 +46,7 @@ const User = () => {
                     const post = data[0];
                     const comment = data[1];
                     if (post.err || comment.err) {
-                        setErrors(post.err || comment.err);
+                        setErrors(post);
                     } else {
                         console.log(check_res.user);
                         setIsPrivate(false);
@@ -57,7 +57,7 @@ const User = () => {
                     }
                 }
             } catch (err) {
-                setErrors('server error');
+                setErrors({err: 'Error in fetching data, server problem'});
             }
         };  
         setLoaded(false);
@@ -77,7 +77,7 @@ const User = () => {
         } else if (data.pending !== null) {
             setIsPending(data.pending);
         } else {
-            setErrors(data.message);
+            setErrors({err: 'Error in fetching data, server problem'});
         }
     }
 
@@ -86,14 +86,12 @@ const User = () => {
             {loaded && 
                 <div>
                     {!isPrivate &&
-                        <div className="access">
-                            <UserInfo id={id} 
-                                user={user} 
-                                posts={posts} 
-                                errors={errors} 
-                                comments={comments} 
-                            />
-                        </div>
+                        <UserInfo id={id} 
+                            user={user} 
+                            posts={posts} 
+                            errors={errors} 
+                            comments={comments} 
+                        />
                     }
                     {isPrivate && 
                         <div className="no_access">

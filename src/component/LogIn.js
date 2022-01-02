@@ -25,7 +25,7 @@ const LogIn = ({ handleChange }) => {
                 });
                 const res_data = await response.json();
                 if (res_data.err) {
-                    setErrors(res_data.err);
+                    setErrors(res_data);
                 } else {
                     localStorage.setItem('token', res_data.token);
                     localStorage.setItem('user', JSON.stringify(res_data.user));
@@ -33,7 +33,7 @@ const LogIn = ({ handleChange }) => {
                     nav('/');
                 }
             } catch (err) {
-                setErrors('Error in fetching data');
+                setErrors({err: 'Error in fetching data, server problem'});
             }
         }
         login_api();
