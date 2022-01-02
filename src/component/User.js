@@ -49,6 +49,7 @@ const User = () => {
                     if (post.err || comment.err) {
                         setErrors(post.err || comment.err);
                     } else {
+                        console.log(check_res.user);
                         setIsPrivate(false);
                         setPosts(post.results);
                         setComment(comment.results);
@@ -72,7 +73,6 @@ const User = () => {
             }
         });
         const data = await response.json();
-        // console.log(data);
         if (data.success) {
             console.log(data.success);
         } else if (data.pending !== null) {
@@ -80,7 +80,6 @@ const User = () => {
         } else {
             setErrors(data.message);
         }
-        // setRefresh(true);
     }
 
     return (
@@ -98,6 +97,8 @@ const User = () => {
                             }
                             <p>following: {user.following.length}</p>
                             <p>followers: {user.follower.length}</p>
+                            <p>Pending follows: {user.pending_following.length}</p>
+                            <p>Pending followers: {user.pending_follower.length}</p>
                             <h2>Posts: </h2>
                             <PostList posts={posts} errors={errors} />
                             <h2>Comments: </h2>
