@@ -7,6 +7,7 @@ import NavBar from './NavBar';
 import LogOut from './LogOut';
 import Post from './Post';
 import User from './User';
+import "../style/style.css";
 
 // Remeber to add /clone_book_page when deploy
 

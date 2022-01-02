@@ -1,11 +1,12 @@
 import React from "react";
+import Image from "./Image";
 import PostList from "./PostList";
 
 const UserInfo = ({ id, user, posts, errors, comments }) => {
 
     return (
         <div className="user_info">
-            {/* <img crossOrigin="anonymous" src={`http://localhost:5000/media/?name=${user.icon}`} alt="icon" /> */}
+            <Image url={user.icon} icon="big" />
             {JSON.parse(localStorage.user)._id === id &&
                 <h1>Welcome {user.first_name} {user.last_name}</h1>
             }
