@@ -29,7 +29,7 @@ const Home = () => {
 
     return(
         <div className="home">
-            <PostList posts={posts} errors={errors} />
+            {posts && <PostList posts={posts} errors={errors} />}
         </div>
     )
 }

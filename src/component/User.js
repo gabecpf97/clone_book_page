@@ -48,7 +48,6 @@ const User = () => {
                     if (post.err || comment.err) {
                         setErrors(post);
                     } else {
-                        console.log(check_res.user);
                         setIsPrivate(false);
                         setPosts(post.results);
                         setComment(comment.results);

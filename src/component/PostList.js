@@ -34,6 +34,12 @@ const PostList = ({ posts, errors, comment }) => {
                         </li>
                     )
                 })}
+                {posts.length < 1 && !comment &&
+                    <h2>No post yet</h2>
+                }
+                {posts.length < 1 && comment &&
+                    <h2>No comment yet</h2>
+                }
             </ul>
             {errors &&  <Errors errors={errors} />}
         </div>

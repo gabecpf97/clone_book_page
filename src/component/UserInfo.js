@@ -18,8 +18,14 @@ const UserInfo = ({ id, user, posts, errors, comments }) => {
             <p>Pending followers: {user.pending_follower.length}</p>
             <h2>Posts: </h2>
             <PostList posts={posts} errors={errors} />
+            {JSON.parse(localStorage.user)._id === id && posts.length < 1 &&
+                <h3>Create new post now</h3>
+            }
             <h2>Comments: </h2>
             <PostList posts={comments} errors={errors} comment={true}/>
+            {JSON.parse(localStorage.user)._id === id && comments.length < 1 && 
+                <h3>Create new comment now</h3>
+            }
         </div>
     )
 }
