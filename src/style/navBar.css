@@ -1,0 +1,29 @@
+.nav_bar {
+    background-color: #001f3f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.page {
+    background-color: #1a2e4a;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.page:hover {
+    background-color: #42536c;
+}

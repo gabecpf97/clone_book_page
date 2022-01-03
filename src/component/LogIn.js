@@ -48,7 +48,7 @@ const LogIn = ({ handleChange }) => {
     }
 
     return(
-        <div className="log_in_div">
+        <div className="log_in_div container">
             <form className="log_in" onSubmit={(e) => handleSubmit(e)}>
                 <FormField field_name="email"
                     field_type="text"

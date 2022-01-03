@@ -28,7 +28,7 @@ const Home = () => {
 
 
     return(
-        <div className="home">
+        <div className="home container">
             {posts && <PostList posts={posts} errors={errors} />}
         </div>
     )

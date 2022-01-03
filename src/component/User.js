@@ -80,7 +80,7 @@ const User = () => {
     }
 
     return (
-        <div className="user">
+        <div className="user container">
             {loaded && 
                 <div>
                     {!isPrivate &&

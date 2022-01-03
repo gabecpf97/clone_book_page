@@ -7,13 +7,13 @@ const UserInfo = ({ id, user, posts, errors, comments }) => {
 
     return (
         <div className="user_info">
-            <Image url={user.icon} icon="big" />
             {JSON.parse(localStorage.user)._id === id &&
                 <h1>Welcome {user.first_name} {user.last_name}</h1>
             }
             {JSON.parse(localStorage.user)._id !== id &&
                 <h1>{user.username}</h1>
-                            }
+            }
+            <Image url={user.icon} icon="big" />
             <p>following: {user.following.length}</p>
             <p>followers: {user.follower.length}</p>
             <p>Pending follows: {user.pending_following.length}</p>

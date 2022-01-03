@@ -7,7 +7,7 @@ import "../style/postList.css";
 const PostList = ({ posts, errors, comment }) => {
 
     return(
-        <div className="list_div">
+        <div className="list_div container">
             <ul className="post_list">
                 {posts&& posts.map(post => {
                     return (

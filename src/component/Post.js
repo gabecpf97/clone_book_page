@@ -31,7 +31,7 @@ const Post = () => {
     }, [id]);
 
     return(
-        <div className="post_deatil">
+        <div className="post_deatil container">
             {post &&
                 <div>
                     <h1>{post.message}</h1>

@@ -81,7 +81,7 @@ const SignUp = ({ handleChange }) => {
     }
 
     return (
-        <form className="sign_up" encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
+        <form className="sign_up container" encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
             <FormField field_name="first_name"
                 field_type="text"
                 field_req={true}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../style/navBar.css";
 
 const NavBar = ({ status }) => {
 
@@ -8,7 +9,7 @@ const NavBar = ({ status }) => {
             <Link className="logo" to="/">CloneBook</Link>
             <ul className="pages">
                 {!status && 
-                    <div className="loged_in">
+                    <div className="loged_in pages">
                         <Link className="page" to="/sign_up">
                             <li>Sign up</li>
                         </Link>
@@ -18,7 +19,7 @@ const NavBar = ({ status }) => {
                     </div>
                 }
                 {status && 
-                    <div className="visiter">
+                    <div className="visiter pages">
                         <Link className="page" to="/log_out">
                             <li>Log out</li>
                         </Link>

@@ -10,8 +10,8 @@
     width: 90vw;
     max-width: 1200px;
     padding: 10px;
-    border: black solid;
     border-radius: 10px;
+    background-color: #25425e;
 }
 
 .user_display {
@@ -19,9 +19,4 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-}
-
-.small_icon {
-    border: black solid;
-    padding: 2px;
 }

@@ -6,9 +6,9 @@ const Image = ({ url, icon }) => {
     useEffect(() => {
         if (icon) {
             if (icon === 'small')
-                setName('small_icon');
+                setName('small_icon icon');
             else 
-                setName('icon');
+                setName('large_icon icon');
         } else {
             setName('image');
         }   

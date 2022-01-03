@@ -11,7 +11,7 @@ const LogOut = ({ handleChange }) => {
     }
 
     return(
-        <div className="log_out">
+        <div className="log_out container">
             <h1>Really log out? {JSON.parse(localStorage.user).username}</h1>
             <button className="page" onClick={handleLogOut}>Log out</button>
         </div>
