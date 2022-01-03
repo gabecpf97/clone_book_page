@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "./Image";
 import PostList from "./PostList";
+import { Link } from "react-router-dom";
 import "../style/userInfo.css";
 
 const UserInfo = ({ id, user, posts, errors, comments }) => {
@@ -14,10 +15,14 @@ const UserInfo = ({ id, user, posts, errors, comments }) => {
                 <h1>{user.username}</h1>
             }
             <Image url={user.icon} icon="big" />
-            <p>following: {user.following.length}</p>
-            <p>followers: {user.follower.length}</p>
-            <p>Pending follows: {user.pending_following.length}</p>
-            <p>Pending followers: {user.pending_follower.length}</p>
+            <Link to="following">following: {user.following.length}</Link>
+            <Link to="follower">followers: {user.follower.length}</Link>
+            {id === JSON.parse(localStorage.user)._id &&
+                <div className="pending">
+                    <Link to="pending_following">Pending follows: {user.pending_following.length}</Link>
+                    <Link to="pending_follower">Pending followers: {user.pending_follower.length}</Link>
+                </div>
+            }
             <h2>Posts: </h2>
             <PostList posts={posts} errors={errors} />
             {JSON.parse(localStorage.user)._id === id && posts.length < 1 &&

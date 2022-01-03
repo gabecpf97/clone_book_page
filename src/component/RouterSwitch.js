@@ -8,6 +8,7 @@ import LogOut from './LogOut';
 import Post from './Post';
 import User from './User';
 import "../style/style.css";
+import UserList from './UserList';
 
 // Remeber to add /clone_book_page when deploy
 
@@ -28,6 +29,10 @@ const RouterSwitch = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/user/:id" element={<User />} />
+                <Route path="/user/:id/following" element={<UserList type="following" />} />
+                <Route path="/user/:id/follower" element={<UserList type="follower" />} />
+                <Route path="/user/:id/pending_following" element={<UserList type="pending_following" />} />
+                <Route path="/user/:id/pending_follower" element={<UserList type="pending_follower" />} />
                 <Route path='/post/:id' element={<Post />} />
                 <Route path="/sign_up" element={<SignUp handleChange={updateStatus}/>} />
                 <Route path="/log_in" element={<LogIn handleChange={updateStatus}/>} />
