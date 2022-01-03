@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "./Image";
 import PostList from "./PostList";
+import "../style/userInfo.css";
 
 const UserInfo = ({ id, user, posts, errors, comments }) => {
 

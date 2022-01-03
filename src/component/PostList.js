@@ -2,35 +2,34 @@ import React from "react";
 import Errors from "./Errors";
 import { Link } from "react-router-dom";
 import Image from "./Image";
+import "../style/postList.css";
 
 const PostList = ({ posts, errors, comment }) => {
 
     return(
-        <div>
+        <div className="list_div">
             <ul className="post_list">
                 {posts&& posts.map(post => {
                     return (
                         <li className="post" key={post._id}>
-                            <Link to={`/user/${post.user._id}`}>
-                                <p>{post.user.username}</p>
+                            <Link className="user_display" to={`/user/${post.user._id}`}>
                                 <Image url={post.user.icon} icon="small" />
+                                <p>{post.user.username}</p>
                             </Link>
                             {comment && 
-                                <div>
-                                    <Link to={`/post/${post.belong}`}>
-                                        <h2>{post.message}</h2>
-                                        {post.media &&post.media.length > 0 && 
+                                <Link to={`/post/${post.belong}`}>
+                                    {post.media &&post.media.length > 0 && 
                                         <Image url={post.media} />
-                                    }
-                                    </Link>
-                                </div>
+                                    }   
+                                    <h2>{post.message}</h2>
+                                </Link>
                             }
                             {!comment &&
                                 <Link to={`/post/${post._id}`}>
-                                    <h2>{post.message}</h2>
                                     {post.media &&post.media.length > 0 && 
                                         <Image url={post.media} />
                                     }
+                                    <h2>{post.message}</h2>
                                 </Link>
                             }
                             <p>likes: {post.likes.length}</p>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Errors from "./Errors";
-import PostList from "./PostList";
 import UserInfo from "./UserInfo";
 
 const User = () => {

@@ -1,0 +1,27 @@
+.post_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.post {
+    width: 90vw;
+    max-width: 1200px;
+    padding: 10px;
+    border: black solid;
+    border-radius: 10px;
+}
+
+.user_display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.small_icon {
+    border: black solid;
+    padding: 2px;
+}
