@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Errors from "./Errors";
 import Image from "./Image";
+import RelationBtn from "./RelationBtn";
 
 const UserList = ({ type }) => {
     const id = useParams().id;
@@ -23,9 +24,6 @@ const UserList = ({ type }) => {
                 } else {
                     setList(data.user_list);
                 }
-                if (type === 'pending_following' || type === 'pending_follower') {
-                    console.log('pending')
-                }
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
@@ -42,6 +40,9 @@ const UserList = ({ type }) => {
                         <Link to={`/user/${user._id}`}>
                             <Image url={user.icon} icon="small" />
                             <p>{user.username}</p>
+                            {(type === 'pending_follower' || type === 'pending_following') &&
+                                <RelationBtn id={user._id} type='approve' />
+                            }
                         </Link>
                     </li>
                 )
