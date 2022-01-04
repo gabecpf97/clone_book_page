@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Errors from "./Errors";
 import Image from "./Image";
 
@@ -22,6 +23,9 @@ const UserList = ({ type }) => {
                 } else {
                     setList(data.user_list);
                 }
+                if (type === 'pending_following' || type === 'pending_follower') {
+                    console.log('pending')
+                }
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
@@ -35,8 +39,10 @@ const UserList = ({ type }) => {
             {list && list.map(user => {
                 return (
                     <li className="user_item" key={user._id}>
-                        <Image url={user.icon} icon="small" />
-                        <p>{user.username}</p>
+                        <Link to={`/user/${user._id}`}>
+                            <Image url={user.icon} icon="small" />
+                            <p>{user.username}</p>
+                        </Link>
                     </li>
                 )
             })}
