@@ -9,6 +9,7 @@ const UserList = ({ type }) => {
     const id = useParams().id;
     const [list, setList] = useState();
     const [errors, setErrors] = useState();
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         const fetechList = async () => {
@@ -24,12 +25,18 @@ const UserList = ({ type }) => {
                 } else {
                     setList(data.user_list);
                 }
+                setRefresh(false);
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
-        fetechList();
-    }, [type, id]);
+        if (refresh || !list)
+            fetechList();
+    }, [type, id, refresh, list]);
+
+    const refreshIt = () => {
+        setRefresh(true);
+    }
 
     return (
         <div className="user_list">
@@ -46,6 +53,9 @@ const UserList = ({ type }) => {
                         </Link>
                         {type === 'follower' &&
                             <RelationBtn id={user._id} type='remove' />
+                        }
+                        {type === 'following' &&
+                            <RelationBtn id={user._id} type='follower' refresh={refreshIt} />
                         }
                     </li>
                 )
