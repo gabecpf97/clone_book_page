@@ -44,6 +44,9 @@ const UserList = ({ type }) => {
                                 <RelationBtn id={user._id} type='approve' />
                             }
                         </Link>
+                        {type === 'follower' &&
+                            <RelationBtn id={user._id} type='remove' />
+                        }
                     </li>
                 )
             })}

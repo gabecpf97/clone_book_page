@@ -28,6 +28,7 @@ const RelationBtn = ({ id, type, refresh }) => {
 
             case 'user':
             case 'approve':
+            case 'remove':
                 setDisplay(undefined);
                 setErros(undefined);
                 break;
@@ -37,21 +38,6 @@ const RelationBtn = ({ id, type, refresh }) => {
                 break;
         }
     }, [type]);
-
-    const handleRelation = async () => {
-        const response = await fetch(`http://localhost:5000/user/${id}/${relation}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            }
-        });
-        const data = await response.json();
-        if (data.err) {
-            setErros(data);
-        } else {
-            refresh();
-        }
-    }
 
     const handleStatus = async (selection) => {
         const response = await fetch(`http://localhost:5000/user/${id}/${selection}`, {
@@ -65,24 +51,27 @@ const RelationBtn = ({ id, type, refresh }) => {
         if (data.err) {
             setErros(data);
         } else {
-            nav(`/user/${JSON.parse(localStorage.user)._id}`);
+            if (type === 'approve' || type === 'remove') {
+                nav(`/user/${JSON.parse(localStorage.user)._id}`);
+            } else {
+                refresh();
+            }
         }
-    }
-
-    const handleRemove = async () => {
-        
     }
 
     return (
         <div className="realtion_control">
             {display && 
-                <button onClick={() => handleRelation()}>{display}</button>
+                <button onClick={() => handleStatus(relation)}>{display}</button>
             }
             {type === 'approve' &&
                 <div className="approvement">
                     <button onClick={() => handleStatus('approve')}>{type}</button>
-                    <button onClick={() => handleStatus('disapprove')}>dis{type}</button>
+                    <button onClick={() => handleStatus('unapprove')}>dis{type}</button>
                 </div>
+            }
+            {type === 'remove' &&
+                <button onClick={() => handleStatus('remove_follower')}>remove</button>
             }
             {errors && <Errors errors={errors} />}
         </div>
