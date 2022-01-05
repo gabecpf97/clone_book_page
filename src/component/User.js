@@ -66,7 +66,6 @@ const User = () => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         };  
-        console.log(refresh, user);
         if (refresh || (!user || user._id !== id)) {
             setLoaded(false);
             fetchPost();
@@ -79,7 +78,7 @@ const User = () => {
 
     return (
         <div className="user container">
-            {loaded && 
+            {loaded && user._id === id &&
                 <UserInfo id={id} 
                     user={user} 
                     posts={posts} 

@@ -47,7 +47,7 @@ const UserList = ({ type }) => {
                         <Link to={`/user/${user._id}`}>
                             <Image url={user.icon} icon="small" />
                             <p>{user.username}</p>
-                            {(type === 'pending_follower' || type === 'pending_following') &&
+                            {type === 'pending_follower' &&
                                 <RelationBtn id={user._id} type='approve' />
                             }
                         </Link>
