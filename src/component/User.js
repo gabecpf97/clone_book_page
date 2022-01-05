@@ -66,6 +66,7 @@ const User = () => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         };  
+        console.log(refresh, user);
         if (refresh || (!user || user._id !== id)) {
             setLoaded(false);
             fetchPost();

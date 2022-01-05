@@ -47,7 +47,7 @@ const RelationBtn = ({ id, type, refresh }) => {
             }
         });
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         if (data.err) {
             setErros(data);
         } else {
