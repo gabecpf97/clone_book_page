@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Errors from "./Errors";
 import PostList from "./PostList";
 import { Link } from "react-router-dom";
+import LikeBtn from "./LikeBtn";
 
 const Post = () => {
     const id = useParams().id;
@@ -41,7 +42,7 @@ const Post = () => {
                         <img crossOrigin="anonymos" 
                         src={`http://localhost:5000/media/?name=${post.media}`} alt="post_img" />
                     }
-                    <p>likes: {post.likes.length}</p>
+                    <LikeBtn id={id} />
                     <h2>Comments: </h2>
                     <PostList posts={post.comments} comment={true} />
                 </div>
