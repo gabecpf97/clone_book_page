@@ -4,6 +4,7 @@ import Errors from "./Errors";
 import PostList from "./PostList";
 import { Link } from "react-router-dom";
 import LikeBtn from "./LikeBtn";
+import DeletePost from "./DeletePost";
 
 const Post = () => {
     const id = useParams().id;
@@ -45,6 +46,7 @@ const Post = () => {
                     <LikeBtn id={id} />
                     <h2>Comments: </h2>
                     <PostList posts={post.comments} comment={true} />
+                    <DeletePost id={id} />
                 </div>
             }
             {errors && <Errors errors={errors} />}
