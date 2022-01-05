@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 
-const DeletePost = ({ id }) => {
+const DeletePost = ({ id, comment, refresh }) => {
     const nav = useNavigate();
     const [errors, setErrors] = useState();
     const [confirm, setConfirm] = useState(false);
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:5000/post/${id}`, {
+        const response = await fetch(`http://localhost:5000/${comment ? 'comment' : 'post'}/${id}`, {
             method: "DELETE",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -19,7 +19,11 @@ const DeletePost = ({ id }) => {
             setErrors(data);
         } else {
             setConfirm(false);
-            nav(`/user/${JSON.parse(localStorage.user)._id}`);
+            if (comment) {
+                refresh();
+            } else {
+                nav(`/user/${JSON.parse(localStorage.user)._id}`);
+            }
         }
     }
 
@@ -33,11 +37,11 @@ const DeletePost = ({ id }) => {
 
     return (
         <div className="delete_post">
-            {!confirm && <button onClick={() => handleConfirm()}>Delete post</button>}
+            {!confirm && <button onClick={() => handleConfirm()}>Delete {comment ? "comment" : "post"}</button>}
             {confirm && 
                 <div className="confirmation">
                     <label>Really delete this post?</label>
-                    <button onClick={() => handleDelete()}>Yes delete this post</button>
+                    <button onClick={() => handleDelete()}>Yes delete this {comment ? "comment" : "post"}</button>
                     <button onClick={() => handleCancel()}>Cancel</button>
                 </div>
             }

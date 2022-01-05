@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CreateComment from "./CreateComment";
+import DeletePost from "./DeletePost";
 import Errors from "./Errors";
 import Image from "./Image";
 import LikeBtn from "./LikeBtn";
 
-const CommentList = ({ id }) => {
+const CommentList = ({ id, userComment }) => {
     const [comments, setComments] = useState();
     const [errors, setErrors] = useState();
     const [reload, setReload] = useState(false);
@@ -28,9 +30,13 @@ const CommentList = ({ id }) => {
                 setErrors({err});
             }
         }
-        if (reload || !comments)
-            fetchComment();
-    }, [id, reload, comments]);
+        if (!userComment) {
+            if (reload || !comments)
+                fetchComment();
+        } else {
+            setComments(userComment);
+        }
+    }, [id, reload, comments, userComment]);
 
     const refreshIt = () => {
         setReload(true);
@@ -38,15 +44,31 @@ const CommentList = ({ id }) => {
 
     return (
         <div className="comment_list">
-            <CreateComment id={id} refresh={refreshIt} />
+            {!userComment &&
+                <CreateComment id={id} refresh={refreshIt} />
+            }
             {comments && comments.map(comment => {
                 return (
                     <li className="comment" key={comment._id}>
                         <Image url={comment.user.icon} icon="small" />
                         <p>{comment.user.username}</p>
-                        <p>{comment.message}</p>
-                        {comment.media && <Image url={comment.media} />}
+                        {userComment &&
+                            <Link to={`/post/${comment.belong._id}`}>
+                                <p>{comment.message}</p>
+                                {comment.media && <Image url={comment.media} />}
+                            </Link>
+                        }
+                        {!userComment &&
+                            <div>
+                                <p>{comment.message}</p>
+                                {comment.media && <Image url={comment.media} />}
+                            </div>
+                        }
                         <LikeBtn id={comment._id} comment="comment"/>
+                        {(comment.user._id === JSON.parse(localStorage.user)._id ||
+                            comment.belong.user === JSON.parse(localStorage.user)._id) &&
+                            <DeletePost id={comment._id} comment={true} refresh={refreshIt} />
+                        }
                     </li>
                 )
             })}

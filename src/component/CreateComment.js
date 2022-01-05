@@ -30,7 +30,6 @@ const CreateComment = ({ id, refresh }) => {
                 }
             });
             const data = await response.json();
-            console.log(data);
             if (data.err) {
                 setErrors(data);
             } else {
