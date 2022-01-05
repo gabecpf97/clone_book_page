@@ -34,7 +34,6 @@ const CreatePost = () => {
             if (data.err) {
                 setErrors(data);
             } else {
-                console.log(data);
                 nav(`/post/${data.id}`);
             }
         } catch (err) {

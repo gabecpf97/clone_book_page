@@ -46,7 +46,9 @@ const Post = () => {
                     <LikeBtn id={id} />
                     <h2>Comments: </h2>
                     <PostList posts={post.comments} comment={true} />
-                    <DeletePost id={id} />
+                    {post.user._id === JSON.parse(localStorage.user)._id &&
+                        <DeletePost id={id} />
+                    }
                 </div>
             }
             {errors && <Errors errors={errors} />}
