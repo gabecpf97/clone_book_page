@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Errors from "./Errors";
 
-const LikeBtn = ({ id }) => {
+const LikeBtn = ({ id, comment }) => {
     const [status, setStatus] = useState();
     const [list, setList] = useState();
     const [errors, setErrors] = useState();
@@ -10,7 +10,7 @@ const LikeBtn = ({ id }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/post/${id}/likes`, {
+                const response = await fetch(`http://localhost:5000/${comment ? 'comment': 'post'}/${id}/likes`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
@@ -31,7 +31,7 @@ const LikeBtn = ({ id }) => {
     }, [id, loaded]);
     
     const handleLike = async () => {
-        const response = await fetch (`http://localhost:5000/post/${id}/${status}`, {
+        const response = await fetch (`http://localhost:5000/${comment ? 'comment': 'post'}/${id}/${status}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

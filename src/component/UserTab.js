@@ -90,7 +90,6 @@ const UserTab = ({ id }) => {
             {loaded &&
                 <div className="tab_content">
                     <h2>{display.replace('_', ' ')}</h2>
-                    {console.log(list)}
                     {(display === 'posts' || display === 'liked_posts') &&
                         <PostList posts={list} errors={errors} />
                     }
