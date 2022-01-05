@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "./Image";
-import PostList from "./PostList";
 import { Link } from "react-router-dom";
 import "../style/userInfo.css";
 import RelationBtn from "./RelationBtn";
+import UserTab from "./UserTab";
 
-const UserInfo = ({ id, user, posts, errors, comments, relation, reload }) => {
+const UserInfo = ({ id, user, relation, reload }) => {
+
     return (
         <div className="user_info">
             {JSON.parse(localStorage.user)._id === id &&
@@ -35,18 +36,7 @@ const UserInfo = ({ id, user, posts, errors, comments, relation, reload }) => {
             }
             <RelationBtn id={id} type={relation} refresh={reload} />
             {(relation !== 'private' && relation !== 'pending confirmation') &&
-                <div>
-                    <h2>Posts: </h2>
-                    <PostList posts={posts} errors={errors} />
-                    {JSON.parse(localStorage.user)._id === id && posts.length < 1 &&
-                        <h3>Create new post now</h3>
-                    }
-                    <h2>Comments: </h2>
-                    <PostList posts={comments} errors={errors} comment={true}/>
-                    {JSON.parse(localStorage.user)._id === id && comments.length < 1 && 
-                        <h3>Create new comment now</h3>
-                    }
-                </div>
+                <UserTab id={id} />
             }
         </div>
     )

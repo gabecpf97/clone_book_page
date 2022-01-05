@@ -6,8 +6,6 @@ import UserInfo from "./UserInfo";
 const User = () => {
     const id = useParams().id;
     const [user, setUser] = useState();
-    const [posts, setPosts] = useState();
-    const [comments, setComment] = useState();
     const [relation, setRelation] = useState();
     const [errors, setErrors] = useState();
     const [loaded, setLoaded] = useState(false);
@@ -32,32 +30,12 @@ const User = () => {
                         setRelation('pending confirmation');
                     setLoaded(true);
                 } else {
-                    const data = await Promise.all([
-                        fetch(`http://localhost:5000/user/${id}/post`,{
-                            headers : {
-                                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                            }
-                        }).then(response => response.json()),
-                        fetch(`http://localhost:5000/user/${id}/comment`, {
-                            headers : {
-                                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                            }
-                        }).then(response => response.json()),
-                    ]);
-                    const post_list = data[0];
-                    const comment_list = data[1];
-                    if (post_list.err || comment_list.err) {
-                        setErrors(data);
-                    } else {
-                        setUser(check_res.user);
-                        setPosts(post_list.results);
-                        setComment(comment_list.results);
-                        if (check_res.follow)
-                            setRelation('follower');
-                        else 
-                            setRelation('public');
-                        setLoaded(true);
-                    }
+                    setUser(check_res.user);
+                    if (check_res.follow)
+                        setRelation('follower');
+                    else 
+                        setRelation('public');
+                    setLoaded(true);
                 }
                 setRefresh(false);
                 if (id === JSON.parse(localStorage.user)._id)
@@ -70,7 +48,7 @@ const User = () => {
             setLoaded(false);
             fetchPost();
         }
-    }, [id, comments, refresh, user]);
+    }, [id, refresh, user]);
 
     const refreshIt = () => {
         setRefresh(true);
@@ -81,9 +59,6 @@ const User = () => {
             {loaded && user._id === id &&
                 <UserInfo id={id} 
                     user={user} 
-                    posts={posts} 
-                    errors={errors} 
-                    comments={comments} 
                     relation={relation}
                     reload={refreshIt}
                 />

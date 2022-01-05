@@ -26,7 +26,7 @@ const PostList = ({ posts, errors, comment }) => {
                             }
                             {!comment &&
                                 <Link to={`/post/${post._id}`}>
-                                    {post.media &&post.media.length > 0 && 
+                                    {post.media && post.media.length > 0 && 
                                         <Image url={post.media} />
                                     }
                                     <h2>{post.message}</h2>
