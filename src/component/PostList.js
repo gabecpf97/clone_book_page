@@ -12,6 +12,7 @@ const PostList = ({ posts, errors, comment }) => {
                 {posts&& posts.map(post => {
                     return (
                         <li className="post" key={post._id}>
+                            {console.log(post)}
                             <Link className="user_display" to={`/user/${post.user._id}`}>
                                 <Image url={post.user.icon} icon="small" />
                                 <p>{post.user.username}</p>
