@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
-const CreatePost = () => {
-    const nav = useNavigate();
+const CreateComment = ({ id, refresh }) => {
     const [message, setMessage] = useState();
     const [media, setMedia] = useState();
     const [errors, setErrors] = useState();
@@ -20,11 +18,11 @@ const CreatePost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const post_data = new FormData();
-        post_data.append('message', message);
+        post_data.append('comment', message);
         if (media)
             post_data.append('image', media);
         try {
-            const response = await fetch(`http://localhost:5000/post/create`, {
+            const response = await fetch(`http://localhost:5000/post/${id}/comment`, {
                 method: "POST",
                 body: post_data,
                 headers: {
@@ -32,28 +30,30 @@ const CreatePost = () => {
                 }
             });
             const data = await response.json();
+            console.log(data);
             if (data.err) {
                 setErrors(data);
             } else {
-                nav(`/post/${data.id}`);
+                refresh();
             }
         } catch (err) {
-            setErrors({err: 'Error fetching data'});
+            setErrors({err: 'Fetching error please refresh'});
         }
     }
 
     return (
-        <div className="create_post">
+        <div className="create_comment">
+            <h3>Add Comment</h3>
             <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
-                <FormField field_name="message" field_req={true} field_type="textarea"
-                    handleChange={onMessageChange} />
-                <FormField field_name="media" field_req={false} field_type="file"
-                    handleChange={onMediaChange} />
-                <input className="submit" type="submit" value="post" />
+                <FormField field_name="message" field_req={true} 
+                    field_type="textarea" handleChange={onMessageChange} />
+                <FormField field_name="media" field_req={false} 
+                    field_type="file" handleChange={onMediaChange} />
+                <input type="submit" value="post" className="submit" />
             </form>
             {errors && <Errors errors={errors} />}
         </div>
     )
 }
 
-export default CreatePost;
+export default CreateComment;

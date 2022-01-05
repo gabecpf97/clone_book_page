@@ -28,7 +28,7 @@ const LikeBtn = ({ id, comment }) => {
             }
         }
         fetchData();
-    }, [id, loaded]);
+    }, [id, loaded, comment]);
     
     const handleLike = async () => {
         const response = await fetch (`http://localhost:5000/${comment ? 'comment': 'post'}/${id}/${status}`, {
@@ -41,7 +41,6 @@ const LikeBtn = ({ id, comment }) => {
         if (data.err) {
             setErrors(data);
         } else {
-            console.log(data);
             setLoaded(false);
         }
     }
