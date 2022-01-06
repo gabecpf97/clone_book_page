@@ -13,6 +13,7 @@ import CreatePost from './CreatePost';
 import EditProfile from './EditProfile';
 import DeleteUser from './DeleteUser';
 import ChangePassword from './ChangePassword';
+import Search from './Search';
 
 // Remeber to add /clone_book_page when deploy
 
@@ -33,6 +34,7 @@ const RouterSwitch = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/user/:id" element={<User />} />
+                <Route path="/user/serach" element={<Search />} />
                 <Route path="/user/:id/following" element={<UserList type="following" />} />
                 <Route path="/user/:id/follower" element={<UserList type="follower" />} />
                 <Route path="/user/:id/pending_following" element={<UserList type="pending_following" />} />

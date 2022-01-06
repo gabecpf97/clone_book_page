@@ -20,6 +20,9 @@ const NavBar = ({ status }) => {
                 }
                 {status && 
                     <div className="loged_in pages">
+                        <Link className="page" to="/user/serach">
+                            <li>Search</li>
+                        </Link>
                         <Link className="page" to="/post/create">
                             <li>Create Post</li>
                         </Link>

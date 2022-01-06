@@ -5,7 +5,7 @@ import Errors from "./Errors";
 import Image from "./Image";
 import RelationBtn from "./RelationBtn";
 
-const UserList = ({ type }) => {
+const UserList = ({ type, serachList }) => {
     const id = useParams().id;
     const [list, setList] = useState();
     const [errors, setErrors] = useState();
@@ -30,10 +30,14 @@ const UserList = ({ type }) => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
-        document.querySelector('head title').textContent = `${type}`;
-        if (refresh || !list)
-            fetechList();
-    }, [type, id, refresh, list]);
+        if (serachList) {
+            setList(serachList);
+        } else {
+            document.querySelector('head title').textContent = `${type}`;
+            if (refresh || !list)
+                fetechList();
+        }
+    }, [type, id, refresh, list, serachList]);
 
     const refreshIt = () => {
         setRefresh(true);
