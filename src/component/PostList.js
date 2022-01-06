@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Image from "./Image";
 import "../style/postList.css";
 import LikeBtn from "./LikeBtn";
+import ShowTime from "./ShowTime";
 
 const PostList = ({ posts, errors, comment }) => {
 
@@ -23,6 +24,7 @@ const PostList = ({ posts, errors, comment }) => {
                                 }
                                 <h2>{post.message}</h2>
                             </Link>
+                            <ShowTime date={post.date} />
                             <LikeBtn id={post._id} />
                         </li>
                     )

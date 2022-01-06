@@ -13,6 +13,7 @@ const SignUp = ({ handleChange }) => {
     const [confirm_password, setConfirm_password] = useState();
     const [isPrivate, setIsPrivate] = useState(true);
     const [icon, setIcon] = useState();
+    const [description, setDescription] = useState("Hello welcome to my page");
     const [errors, setErrors] = useState();
 
     useEffect(() =>{
@@ -52,6 +53,10 @@ const SignUp = ({ handleChange }) => {
         setIcon(e.target.files[0]);
     }
 
+    const onDescriptionChange = (e) => {
+        setDescription(e.target.value);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
@@ -63,6 +68,7 @@ const SignUp = ({ handleChange }) => {
         data.append('confirm_password', confirm_password);
         data.append('private', isPrivate);
         data.append('icon', icon);
+        data.append('description', description);
         const signup_api = async () => {
             try {
                 const response = await fetch(`http://localhost:5000/user/create`, {
@@ -111,6 +117,11 @@ const SignUp = ({ handleChange }) => {
                 field_type="text"
                 field_req={true}
                 handleChange={onConfirmChange} />
+            <FormField field_name="description"
+                field_type="textarea"
+                field_req={false}
+                handleChange={onDescriptionChange}
+                value={description} />
             <FormField field_name="private"
                 field_type="checkbox"
                 field_req={false}

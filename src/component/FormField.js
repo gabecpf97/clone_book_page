@@ -10,7 +10,7 @@ const FormField = ({ field_name, field_type, field_req, handleChange, value }) =
                     value={value} onChange={(e) => handleChange(e)} />
             }
             {field_type === 'textarea' &&
-                <textarea name="field_name" onChange={(e) => handleChange(e)} />
+                <textarea name="field_name" value={value} onChange={(e) => handleChange(e)} />
             }
         </div>
     )

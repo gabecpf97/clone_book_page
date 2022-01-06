@@ -5,6 +5,7 @@ import DeletePost from "./DeletePost";
 import Errors from "./Errors";
 import Image from "./Image";
 import LikeBtn from "./LikeBtn";
+import ShowTime from "./ShowTime";
 
 const CommentList = ({ id, userComment }) => {
     const [comments, setComments] = useState();
@@ -64,6 +65,7 @@ const CommentList = ({ id, userComment }) => {
                                 {comment.media && <Image url={comment.media} />}
                             </div>
                         }
+                        <ShowTime date={comment.date} />
                         <LikeBtn id={comment._id} comment="comment"/>
                         {(comment.user._id === JSON.parse(localStorage.user)._id ||
                             comment.belong.user === JSON.parse(localStorage.user)._id) &&

@@ -6,6 +6,7 @@ import LikeBtn from "./LikeBtn";
 import DeletePost from "./DeletePost";
 import CommentList from "./CommentList";
 import Image from "./Image";
+import ShowTime from "./ShowTime";
 
 const Post = () => {
     const id = useParams().id;
@@ -42,6 +43,7 @@ const Post = () => {
                     <Link to={`/user/${post.user._id}`}>{post.user.username}</Link>
                     <p>{post.date}</p>
                     {post.media[0] && <Image url={post.media[0]} />}
+                    <ShowTime date={post.date} />
                     <LikeBtn id={id} />
                     <h2>Comments: </h2>
                     <CommentList id={id} />

@@ -16,6 +16,7 @@ const UserInfo = ({ id, user, relation, reload }) => {
                 <h1>{user.username}</h1>
             }
             <Image url={user.icon} icon="big" />
+            <p>{user.description}</p>
             <Link className="page" to="/user/edit">Edit profile</Link>
             <Link className="page" to="/user/change_password">Change password</Link>
             <Link className="page" to="/delete_user">Delete Account</Link>

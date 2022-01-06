@@ -10,6 +10,7 @@ const EditProfile = () => {
     const [last_name, setLast_name] = useState(user.last_name);
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
+    const [description, setDescription] = useState(user.description);
     const [isPrivate, setIsPrivate] = useState(user.private);
     const [icon, setIcon] = useState();
     const [errors, setErrors] = useState();
@@ -42,6 +43,10 @@ const EditProfile = () => {
         setIcon(e.target.files[0]);
     }
 
+    const onDescriptionChange = (e) => {
+        setDescription(e.target.value);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
@@ -49,6 +54,7 @@ const EditProfile = () => {
         data.append('first_name', first_name);
         data.append('last_name', last_name);
         data.append('email', email);
+        data.append('description', description);
         data.append('private', isPrivate);
         data.append('icon', icon);
         const edit_api = async () => {
@@ -105,6 +111,10 @@ const EditProfile = () => {
                 field_req={true}
                 value={email}
                 handleChange={onEmailChange} />
+            <FormField field_name="description"
+                field_type="textarea"
+                value={description}
+                handleChange={onDescriptionChange} />
             <div className="field">
                 <label htmlFor="private">Private</label>
                 <input type="checkbox" checked={isPrivate} onChange={onPrivateChange} />
