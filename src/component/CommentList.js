@@ -73,6 +73,9 @@ const CommentList = ({ id, userComment }) => {
                     </li>
                 )
             })}
+            {comments && comments.length < 1 &&
+                <h2>No comment yet</h2>
+            }
             {errors && <Errors errors={errors} />}
         </div>
     )

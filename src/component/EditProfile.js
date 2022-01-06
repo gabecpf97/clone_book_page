@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
-import Image from "./Image";
 
 const EditProfile = () => {
     const nav = useNavigate();
@@ -48,7 +47,7 @@ const EditProfile = () => {
         data.append('email', email);
         data.append('private', isPrivate);
         data.append('icon', icon);
-        const signup_api = async () => {
+        const edit_api = async () => {
             try {
                 const response = await fetch(`http://localhost:5000/user/${user._id}/`, {
                     method: "PUT",
@@ -75,7 +74,7 @@ const EditProfile = () => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
-        signup_api();
+        edit_api();
     }
 
 

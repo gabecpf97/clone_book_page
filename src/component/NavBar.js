@@ -6,7 +6,7 @@ const NavBar = ({ status }) => {
 
     return (
         <div className="nav_bar">
-            <Link className="logo" to="/">CloneBook</Link>
+            <Link className="logo" to={status ? '/' : '/log_in'}>CloneBook</Link>
             <ul className="pages">
                 {!status && 
                     <div className="visitor pages">
