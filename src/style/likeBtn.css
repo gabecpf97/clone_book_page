@@ -1,0 +1,7 @@
+.like_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 10px;
+    gap: 10px;
+}

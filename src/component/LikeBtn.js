@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Errors from "./Errors";
+import "../style/likeBtn.css";
 
 const LikeBtn = ({ id, comment }) => {
     const [status, setStatus] = useState();
@@ -48,7 +49,7 @@ const LikeBtn = ({ id, comment }) => {
     return (
         <div className="like_btn">
             {loaded && 
-                <div>
+                <div className="like_btn">
                     <label>{list.length}</label>
                     <button onClick={() => handleLike()} >{status}</button>
                 </div>

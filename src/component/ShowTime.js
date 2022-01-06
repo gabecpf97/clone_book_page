@@ -4,7 +4,9 @@ import React from "react";
 const ShowTime = ({date}) => {
 
     return (
-        <p>{DateTime.fromJSDate(new Date(`${date}`)).toLocaleString(DateTime.DATETIME_FULL)}</p>
+        <p className="showtime">
+            {DateTime.fromJSDate(new Date(`${date}`)).toLocaleString(DateTime.DATETIME_FULL)}
+        </p>
     )
 }
 

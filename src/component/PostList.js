@@ -19,10 +19,12 @@ const PostList = ({ posts, errors, comment }) => {
                                 <p>{post.user.username}</p>
                             </Link>
                             <Link to={`/post/${post._id}`}>
+                                <p className="post_preview_msg">{post.message}</p>
                                 {post.media && post.media.length > 0 && 
-                                    <Image url={post.media} />
+                                    <div className="frame">
+                                        <Image url={post.media} />
+                                    </div>
                                 }
-                                <h2>{post.message}</h2>
                             </Link>
                             <ShowTime date={post.date} />
                             <LikeBtn id={post._id} />

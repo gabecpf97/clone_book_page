@@ -15,11 +15,11 @@ const Image = ({ url, icon }) => {
     }, [icon]);
 
     return(
-        <img 
-            src={`http://localhost:5000/media/?name=${url}`} 
+        <img src={`http://localhost:5000/media/?name=${url}`} 
             className={name}
             crossOrigin="anonymous"
-            alt={url} />
+            alt={url} 
+        />
     )
 }
 

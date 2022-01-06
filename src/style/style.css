@@ -14,6 +14,11 @@ a,
     color: #EDF5E1;
 }
 
+.page,
+button {
+    cursor: pointer;
+}
+
 ul {
     padding-inline-start: 0px;
 }
@@ -34,7 +39,20 @@ ul {
 }
 
 .image {
-    max-height: 60vh;
+    max-height: 600px;
     max-width: 100%;
 }
 
+.frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* show time */
+.showtime {
+    font-size: 12px;
+    align-self: center;
+    text-align: end;
+    padding: 0px 10px;
+}
