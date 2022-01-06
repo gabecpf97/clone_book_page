@@ -12,6 +12,7 @@ import UserList from './UserList';
 import CreatePost from './CreatePost';
 import EditProfile from './EditProfile';
 import DeleteUser from './DeleteUser';
+import ChangePassword from './ChangePassword';
 
 // Remeber to add /clone_book_page when deploy
 
@@ -42,6 +43,7 @@ const RouterSwitch = () => {
                 <Route path="/sign_up" element={<SignUp handleChange={updateStatus}/>} />
                 <Route path="/log_in" element={<LogIn handleChange={updateStatus}/>} />
                 <Route path="/log_out" element={<LogOut handleChange={updateStatus}/>} />
+                <Route path="/user/change_password" element={<ChangePassword handleStatus={updateStatus}/>} />
                 <Route path="/delete_user" element={<DeleteUser handleChange={updateStatus} />} />
             </Routes>
         </BrowserRouter>

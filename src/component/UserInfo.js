@@ -17,6 +17,7 @@ const UserInfo = ({ id, user, relation, reload }) => {
             }
             <Image url={user.icon} icon="big" />
             <Link className="page" to="/user/edit">Edit profile</Link>
+            <Link className="page" to="/user/change_password">Change password</Link>
             <Link className="page" to="/delete_user">Delete Account</Link>
             {(relation === 'private' || relation === 'pending confirmation') &&
                 <div>
