@@ -67,6 +67,7 @@ const CommentList = ({ id, userComment }) => {
                         <LikeBtn id={comment._id} comment="comment"/>
                         {(comment.user._id === JSON.parse(localStorage.user)._id ||
                             comment.belong.user === JSON.parse(localStorage.user)._id) &&
+                            !userComment &&
                             <DeletePost id={comment._id} comment={true} refresh={refreshIt} />
                         }
                     </li>

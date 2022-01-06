@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../style/userInfo.css";
 import RelationBtn from "./RelationBtn";
 import UserTab from "./UserTab";
+import EditProfile from "./EditProfile";
 
 const UserInfo = ({ id, user, relation, reload }) => {
 
@@ -16,6 +17,7 @@ const UserInfo = ({ id, user, relation, reload }) => {
                 <h1>{user.username}</h1>
             }
             <Image url={user.icon} icon="big" />
+            <Link className="page" to="/user/edit">Edit profile</Link>
             {(relation === 'private' || relation === 'pending confirmation') &&
                 <div>
                     <p>following: {user.following.length}</p>
