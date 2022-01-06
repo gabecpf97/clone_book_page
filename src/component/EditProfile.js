@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
@@ -13,6 +13,10 @@ const EditProfile = () => {
     const [isPrivate, setIsPrivate] = useState(user.private);
     const [icon, setIcon] = useState();
     const [errors, setErrors] = useState();
+
+    useEffect(() =>{
+        document.querySelector('head title').textContent = "Edit profile";
+    }, []);
 
     const onFNchange = (e) => {
         setFirst_name(e.target.value);

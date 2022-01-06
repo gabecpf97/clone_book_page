@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LogOut = ({ handleChange }) => {
     const nav = useNavigate();
+
+    useEffect(() =>{
+        document.querySelector('head title').textContent = "Log Out";
+    }, []);
+
+
     const handleLogOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');

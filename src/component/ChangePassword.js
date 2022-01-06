@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
@@ -9,6 +9,11 @@ const ChangePassword = ({ handleStatus }) => {
     const [newPassword, setNewPassword] = useState();
     const [confirm, setConfirm] = useState();
     const [errors, setErrors] = useState();
+
+    useEffect(() =>{
+        document.querySelector('head title').textContent = "Change Password";
+    }, []);
+
 
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
@@ -43,7 +48,6 @@ const ChangePassword = ({ handleStatus }) => {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
             handleStatus();
-            console.log(data);
             nav('/log_in');
         }
     }

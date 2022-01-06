@@ -23,6 +23,7 @@ const Home = () => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
+        document.querySelector('head title').textContent = "Home";
         fetchPost();
     }, []);
 

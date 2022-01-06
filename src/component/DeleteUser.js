@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 
@@ -7,6 +7,11 @@ const DeleteUser = ({ handleChange }) => {
     const nav = useNavigate();
     const [password, setPassword] = useState();
     const [errors, setErrors] = useState();
+
+    useEffect(() =>{
+        document.querySelector('head title').textContent = "Delete Account";
+    }, []);
+
 
     const onPasswordChange = (e) => {
         setPassword(e.target.value);

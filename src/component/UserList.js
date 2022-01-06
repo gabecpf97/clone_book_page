@@ -30,6 +30,7 @@ const UserList = ({ type }) => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
+        document.querySelector('head title').textContent = `${type}`;
         if (refresh || !list)
             fetechList();
     }, [type, id, refresh, list]);

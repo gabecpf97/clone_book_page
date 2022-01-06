@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
@@ -14,6 +14,11 @@ const SignUp = ({ handleChange }) => {
     const [isPrivate, setIsPrivate] = useState(true);
     const [icon, setIcon] = useState();
     const [errors, setErrors] = useState();
+
+    useEffect(() =>{
+        document.querySelector('head title').textContent = "Sign Up";
+    }, []);
+
 
     const onFNchange = (e) => {
         setFirst_name(e.target.value);

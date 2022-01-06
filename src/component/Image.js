@@ -19,7 +19,7 @@ const Image = ({ url, icon }) => {
             src={`http://localhost:5000/media/?name=${url}`} 
             className={name}
             crossOrigin="anonymous"
-            alt={name} />
+            alt={url} />
     )
 }
 

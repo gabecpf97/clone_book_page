@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
@@ -8,6 +8,10 @@ const CreatePost = () => {
     const [message, setMessage] = useState();
     const [media, setMedia] = useState();
     const [errors, setErrors] = useState();
+
+    useEffect(() => {
+        document.querySelector('head title').textContent = "Create Post";
+    }, []);
 
     const onMessageChange = (e) => {
         setMessage(e.target.value);

@@ -44,6 +44,7 @@ const User = () => {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         };  
+        document.querySelector('head title').textContent = "User";
         if (refresh || (!user || user._id !== id)) {
             setLoaded(false);
             fetchPost();
