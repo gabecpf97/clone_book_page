@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/clone_book_page/static/css/main.9dc4e730.css",
+    "main.js": "/clone_book_page/static/js/main.7bb71b32.js",
+    "index.html": "/clone_book_page/index.html",
+    "main.9dc4e730.css.map": "/clone_book_page/static/css/main.9dc4e730.css.map",
+    "main.7bb71b32.js.map": "/clone_book_page/static/js/main.7bb71b32.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9dc4e730.css",
+    "static/js/main.7bb71b32.js"
+  ]
+}
