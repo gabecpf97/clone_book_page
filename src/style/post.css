@@ -1,0 +1,11 @@
+.post_detail {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #25425e;
+}
+
+.post_msg {
+    padding: 0px 20px;
+    font-size: 18px;
+}

@@ -7,6 +7,7 @@ import DeletePost from "./DeletePost";
 import CommentList from "./CommentList";
 import Image from "./Image";
 import ShowTime from "./ShowTime";
+import "../style/post.css";
 
 const Post = () => {
     const id = useParams().id;
@@ -36,17 +37,27 @@ const Post = () => {
     }, [id]);
 
     return(
-        <div className="post_deatil container">
+        <div className="container">
             {post &&
-                <div>
-                    <h1>{post.message}</h1>
-                    <Link to={`/user/${post.user._id}`}>{post.user.username}</Link>
-                    <p>{post.date}</p>
-                    {post.media[0] && <Image url={post.media[0]} />}
-                    <ShowTime date={post.date} />
-                    <LikeBtn id={id} />
-                    <h2>Comments: </h2>
-                    <CommentList id={id} />
+                <div className="post_div">
+                    <div className="post_detail">
+                        <Link className="user_display" to={`/user/${post.user._id}`}>
+                                <Image url={post.user.icon} icon="small" />
+                                <p>{post.user.username}</p>
+                        </Link>
+                        <p className="post_msg">{post.message}</p>
+                        {post.media[0] && 
+                            <div className="frame">
+                                <Image url={post.media[0]} />
+                            </div>
+                        }
+                        <ShowTime date={post.date} />
+                        <LikeBtn id={id} />
+                    </div>
+                    <div className="post_comment">
+                        <h2>Comments: </h2>
+                        <CommentList id={id} />
+                    </div>
                     {post.user._id === JSON.parse(localStorage.user)._id &&
                         <DeletePost id={id} />
                     }

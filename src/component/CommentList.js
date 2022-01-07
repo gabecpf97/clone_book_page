@@ -6,6 +6,7 @@ import Errors from "./Errors";
 import Image from "./Image";
 import LikeBtn from "./LikeBtn";
 import ShowTime from "./ShowTime";
+import "../style/commentlist.css";
 
 const CommentList = ({ id, userComment }) => {
     const [comments, setComments] = useState();
@@ -56,13 +57,17 @@ const CommentList = ({ id, userComment }) => {
                         {userComment &&
                             <Link to={`/post/${comment.belong._id}`}>
                                 <p>{comment.message}</p>
-                                {comment.media && <Image url={comment.media} />}
+                                <div className="frame">
+                                    {comment.media && <Image url={comment.media} />}
+                                </div>
                             </Link>
                         }
                         {!userComment &&
                             <div>
                                 <p>{comment.message}</p>
-                                {comment.media && <Image url={comment.media} />}
+                                <div className="frame">
+                                    {comment.media && <Image url={comment.media} />}
+                                </div>
                             </div>
                         }
                         <ShowTime date={comment.date} />

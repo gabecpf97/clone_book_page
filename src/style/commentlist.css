@@ -1,0 +1,14 @@
+.comment_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+}
+
+.comment {
+    background-color: #293574;
+    border-radius: 10px;
+    padding: 10px;
+    max-height: 20vh;
+}
