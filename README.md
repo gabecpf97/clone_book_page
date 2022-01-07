@@ -7,7 +7,7 @@ https://github.com/gabecpf97/clone_book_api
 ## website
 https://gabecpf97.github.io/clone_book_page/
 
-![web snapshot](/clone_book_snapshot.png)
+![web snapshot](/clone_book_snapshot.jpg)
 
 ## tools, framework, database used
 - react
