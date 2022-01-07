@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -10,5 +10,24 @@
     background-color: #293574;
     border-radius: 10px;
     padding: 10px;
-    max-height: 20vh;
+    width: 40vw;
+    max-width: 50vw;
+    /* max-height: 20vh; */
+}
+
+.comment .image {
+    max-height: 10vh;
+}
+
+.comment_form div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment_form textarea {
+    width: 400px;
+    /* max-width: 600px; */
+    height: 40px;
+    resize: none;
 }

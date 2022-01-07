@@ -43,12 +43,14 @@ const CreateComment = ({ id, refresh }) => {
     return (
         <div className="create_comment">
             <h3>Add Comment</h3>
-            <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
-                <FormField field_name="message" field_req={true} 
+            <form className="comment_form" onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
+                <FormField  field_req={true} 
                     field_type="textarea" handleChange={onMessageChange} />
-                <FormField field_name="media" field_req={false} 
+                <FormField field_req={false} 
                     field_type="file" handleChange={onMediaChange} />
-                <input type="submit" value="post" className="submit" />
+                    <div>
+                        <input type="submit" value="post" className="submit" />
+                    </div>
             </form>
             {errors && <Errors errors={errors} />}
         </div>
