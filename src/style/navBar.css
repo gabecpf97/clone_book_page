@@ -17,7 +17,8 @@
     gap: 20px;
 }
 
-.page {
+.page,
+.submit {
     background-color: #14347a;
     padding: 10px;
     border-radius: 10px;

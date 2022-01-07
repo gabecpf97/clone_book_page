@@ -9,7 +9,8 @@ li {
 }
 
 a,
-.page {
+.page,
+.submit {
     text-decoration: none;
     color: #EDF5E1;
 }
@@ -55,4 +56,12 @@ ul {
     align-self: center;
     text-align: end;
     padding: 0px 10px;
+}
+
+/* form */
+.create_post {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
 }

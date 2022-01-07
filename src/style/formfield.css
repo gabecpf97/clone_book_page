@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 60vw;
+    gap: 10px;
+}
+
+.field {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    width: 100%;
+}
+
+.field textarea {
+    height: 100px;
+    width: 100%;
+    resize: none;
+}

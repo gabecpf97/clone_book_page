@@ -1,4 +1,5 @@
 import React from "react";
+import "../style/formfield.css";
 
 const FormField = ({ field_name, field_type, field_req, handleChange, value }) => {
 
