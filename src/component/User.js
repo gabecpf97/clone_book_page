@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Errors from "./Errors";
 import UserInfo from "./UserInfo";
+import "../style/user.css";
 
 const User = () => {
     const id = useParams().id;

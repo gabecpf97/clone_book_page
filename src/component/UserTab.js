@@ -42,10 +42,12 @@ const UserTab = ({ id }) => {
 
     return (
         <div className="user_tab">
-            <button onClick={() => changeDisplay('post')}>Post</button>
-            <button onClick={() => changeDisplay('comment')}>Comment</button>
-            <button onClick={() => changeDisplay('liked_post')}>Liked post</button>
-            <button onClick={() => changeDisplay('liked_comment')}>Liked comment</button>
+            <div className="tab_control">
+                <button onClick={() => changeDisplay('post')}>Post</button>
+                <button onClick={() => changeDisplay('comment')}>Comment</button>
+                <button onClick={() => changeDisplay('liked_post')}>Liked post</button>
+                <button onClick={() => changeDisplay('liked_comment')}>Liked comment</button>
+            </div>
             {loaded &&
                 <div className="tab_content">
                     <h2>{display.replace('_', ' ')}s</h2>

@@ -60,9 +60,9 @@ const RelationBtn = ({ id, type, refresh }) => {
     }
 
     return (
-        <div className="realtion_control">
+        <div className="relation_control">
             {display && 
-                <button onClick={() => handleStatus(relation)}>{display}</button>
+                <button className="page" onClick={() => handleStatus(relation)}>{display}</button>
             }
             {type === 'approve' &&
                 <div className="approvement">
