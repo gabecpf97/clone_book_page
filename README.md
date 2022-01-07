@@ -1,6 +1,20 @@
 # This is a web page cloning a social media app
 Uses react for the front end 
 
+## Backend github repo
+https://github.com/gabecpf97/clone_book_api
+
+## website
+https://gabecpf97.github.io/clone_book_page/
+
+![web snapshot](./clone_book_snapshot.jpg)
+
+## tools, framework, database used
+- react
+- node
+- express
+- mongoDB
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
