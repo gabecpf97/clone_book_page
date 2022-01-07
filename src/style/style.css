@@ -16,7 +16,8 @@ a,
 }
 
 .page,
-button {
+button,
+.submit {
     cursor: pointer;
 }
 

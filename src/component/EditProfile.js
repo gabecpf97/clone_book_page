@@ -59,7 +59,7 @@ const EditProfile = () => {
         data.append('icon', icon);
         const edit_api = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/${user._id}/`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${user._id}/`, {
                     method: "PUT",
                     body: data,
                     headers: {
@@ -70,14 +70,14 @@ const EditProfile = () => {
                 if (res_data.errors || res_data.err) {
                     setErrors(res_data);
                 } else {
-                    const update = await fetch(`http://localhost:5000/user/${user._id}`, {
+                    const update = await fetch(`https://clone-book-api-29.herokuapp.com/user/${user._id}`, {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         }
                     });
                     const update_data = await update.json();
                     localStorage.setItem('user', JSON.stringify(update_data.user));
-                    nav(`/user/${user._id}`);
+                    nav(`/clone_book_page/user/${user._id}`);
                 }
             } catch (err) {
                 console.log(err);

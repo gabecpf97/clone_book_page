@@ -32,22 +32,22 @@ const UserInfo = ({ id, user, relation, reload }) => {
                 }
                 {(relation !== 'private' && relation !== 'pending confirmation') &&
                     <div className="follow">
-                        <Link to="following">following: {user.following.length}</Link>
-                        <Link to="follower">followers: {user.follower.length}</Link>
+                        <Link to="/clone_book_page/following">following: {user.following.length}</Link>
+                        <Link to="/clone_book_page/follower">followers: {user.follower.length}</Link>
                     </div>
                 }
                 {id === JSON.parse(localStorage.user)._id &&
                     <div className="pending">
-                        <Link to="pending_following">Pending follows: {user.pending_following.length}</Link>
-                        <Link to="pending_follower">Pending followers: {user.pending_follower.length}</Link>
+                        <Link to="/clone_book_page/pending_following">Pending follows: {user.pending_following.length}</Link>
+                        <Link to="/clone_book_page/pending_follower">Pending followers: {user.pending_follower.length}</Link>
                     </div>
                 }
             </div>
             {id === JSON.parse(localStorage.user)._id &&
                 <div className="account_control">
-                    <Link className="page" to="/user/edit">Edit profile</Link>
-                    <Link className="page" to="/user/change_password">Change password</Link>
-                    <Link className="page" to="/delete_user">Delete Account</Link>
+                    <Link className="page" to="/clone_book_page/user/edit">Edit profile</Link>
+                    <Link className="page" to="/clone_book_page/user/change_password">Change password</Link>
+                    <Link className="page" to="/clone_book_page/delete_user">Delete Account</Link>
                 </div>
             }
             {(relation !== 'private' && relation !== 'pending confirmation') &&

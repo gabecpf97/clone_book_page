@@ -29,7 +29,7 @@ const ChangePassword = ({ handleStatus }) => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:5000/user/${JSON.parse(localStorage.user)._id}/password`, {
+        const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${JSON.parse(localStorage.user)._id}/password`, {
             method: "PUT",
             body: JSON.stringify({
                 password,
@@ -48,7 +48,7 @@ const ChangePassword = ({ handleStatus }) => {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
             handleStatus();
-            nav('/log_in');
+            nav('/clone_book_page/log_in');
         }
     }
 

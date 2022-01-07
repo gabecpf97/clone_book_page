@@ -8,7 +8,7 @@ const DeletePost = ({ id, comment, refresh }) => {
     const [confirm, setConfirm] = useState(false);
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:5000/${comment ? 'comment' : 'post'}/${id}`, {
+        const response = await fetch(`https://clone-book-api-29.herokuapp.com/${comment ? 'comment' : 'post'}/${id}`, {
             method: "DELETE",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -22,7 +22,7 @@ const DeletePost = ({ id, comment, refresh }) => {
             if (comment) {
                 refresh();
             } else {
-                nav(`/user/${JSON.parse(localStorage.user)._id}`);
+                nav(`/clone_book_page/user/${JSON.parse(localStorage.user)._id}`);
             }
         }
     }

@@ -19,7 +19,7 @@ const DeleteUser = ({ handleChange }) => {
     
     const handleClicked = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:5000/user/${user._id}`, {
+        const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${user._id}`, {
             method: "DELETE",
             body: JSON.stringify({password}),
             headers: {
@@ -34,7 +34,7 @@ const DeleteUser = ({ handleChange }) => {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             handleChange();
-            nav('/log_in');
+            nav('/clone_book_page/log_in');
         }
     }
 

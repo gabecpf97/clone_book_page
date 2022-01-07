@@ -11,28 +11,32 @@ const LikeBtn = ({ id, comment }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/${comment ? 'comment': 'post'}/${id}/likes`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/${comment ? 'comment': 'post'}/${id}/likes`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
                 const data = await response.json();
-                if (data.err) {
-                    setErrors(data);
-                } else {
-                    setStatus(data.status ? "unlike": "like");
-                    setList(data.likes);
-                    setLoaded(true);
+                if (isMounted) {
+                    if (data.err) {
+                        setErrors(data);
+                    } else {
+                        setStatus(data.status ? "unlike": "like");
+                        setList(data.likes);
+                        setLoaded(true);
+                    }
                 }
             } catch (err) {
                 setErrors({err: 'Error in fetching please refresh'});
             }
         }
+        let isMounted = true;
         fetchData();
+        return () => {isMounted = false}
     }, [id, loaded, comment]);
     
     const handleLike = async () => {
-        const response = await fetch (`http://localhost:5000/${comment ? 'comment': 'post'}/${id}/${status}`, {
+        const response = await fetch (`https://clone-book-api-29.herokuapp.com/${comment ? 'comment': 'post'}/${id}/${status}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

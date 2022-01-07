@@ -13,25 +13,32 @@ const UserTab = ({ id }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/${id}/${display}`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${id}/${display}`, {
                     headers : {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
                 const data = await response.json();
-                if(data.err) {
-                    setErrors(data);
-                } else {
-                    setList(data.results);
-                    setLoaded(true);
+                if (isMounted) {
+                    if(data.err) {
+                        setErrors(data);
+                    } else {
+                        setList(data.results);
+                        setLoaded(true);
+                    }
+                    setChanged(false);
                 }
-                setChanged(false);
             } catch (err) {
                     setErrors('Fetching errors');
             }
         }   
+        let isMounted = true;
         if (changed || !list)
             fetchData();
+
+        return () => {
+            isMounted = false;
+        }
     }, [id, changed, list, display]);
 
     const changeDisplay = (changeTo) => {

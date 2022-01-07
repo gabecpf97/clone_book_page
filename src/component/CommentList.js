@@ -16,28 +16,33 @@ const CommentList = ({ id, userComment }) => {
     useEffect(() => {
         const fetchComment = async () => {
             try {
-                const response = await fetch (`http://localhost:5000/comment_list/${id}`, {
+                const response = await fetch (`https://clone-book-api-29.herokuapp.com/comment_list/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
                 const data = await response.json();
-                if (data.err) {
-                    setErrors(data);
-                } else {
-                    setComments(data.comments);
-                    setReload(false);
+                if (isMounted) {
+                    if (data.err) {
+                        setErrors(data);
+                    } else {
+                        setComments(data.comments);
+                        setReload(false);
+                    }
                 }
             } catch (err) {
                 setErrors({err});
             }
         }
+        let isMounted = true;
         if (!userComment) {
             if (reload || !comments)
                 fetchComment();
         } else {
             setComments(userComment);
         }
+
+        return () => {isMounted = false}
     }, [id, reload, comments, userComment]);
 
     const refreshIt = () => {
@@ -55,7 +60,7 @@ const CommentList = ({ id, userComment }) => {
                         <Image url={comment.user.icon} icon="small" />
                         <p>{comment.user.username}</p>
                         {userComment &&
-                            <Link to={`/post/${comment.belong._id}`}>
+                            <Link to={`/clone_book_page/post/${comment.belong._id}`}>
                                 <p>{comment.message}</p>
                                 <div className="frame">
                                     {comment.media && <Image url={comment.media} />}

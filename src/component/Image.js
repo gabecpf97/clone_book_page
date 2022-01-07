@@ -15,7 +15,7 @@ const Image = ({ url, icon }) => {
     }, [icon]);
 
     return(
-        <img src={`http://localhost:5000/media/?name=${url}`} 
+        <img src={`https://clone-book-api-29.herokuapp.com/media/?name=${url}`} 
             className={name}
             crossOrigin="anonymous"
             alt={url} 

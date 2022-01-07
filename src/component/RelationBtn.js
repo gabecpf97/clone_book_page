@@ -40,7 +40,7 @@ const RelationBtn = ({ id, type, refresh }) => {
     }, [type]);
 
     const handleStatus = async (selection) => {
-        const response = await fetch(`http://localhost:5000/user/${id}/${selection}`, {
+        const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${id}/${selection}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -52,7 +52,7 @@ const RelationBtn = ({ id, type, refresh }) => {
             setErros(data);
         } else {
             if (type === 'approve' || type === 'remove') {
-                nav(`/user/${JSON.parse(localStorage.user)._id}`);
+                nav(`/clone_book_page/user/${JSON.parse(localStorage.user)._id}`);
             } else {
                 refresh();
             }

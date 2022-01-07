@@ -19,3 +19,14 @@ form {
     width: 100%;
     resize: none;
 }
+
+form .submit {
+    border-color: transparent;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

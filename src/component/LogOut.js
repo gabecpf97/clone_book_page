@@ -13,7 +13,7 @@ const LogOut = ({ handleChange }) => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         handleChange();
-        nav('/log_in');
+        nav('/clone_book_page/log_in');
     }
 
     return(

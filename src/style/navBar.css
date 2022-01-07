@@ -24,6 +24,7 @@
     border-radius: 10px;
 }
 
-.page:hover {
+.page:hover,
+.submit:hover {
     background-color: #42536c;
 }

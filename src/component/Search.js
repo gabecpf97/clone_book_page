@@ -19,7 +19,7 @@ const Search = () => {
     const handleSearch = async (e) => {
         e.preventDefault();
         console.log(input);
-        const response = await fetch(`http://localhost:5000/user/search/?name=${input}`, {
+        const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/search/?name=${input}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },

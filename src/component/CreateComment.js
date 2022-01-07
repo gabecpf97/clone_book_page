@@ -22,7 +22,7 @@ const CreateComment = ({ id, refresh }) => {
         if (media)
             post_data.append('image', media);
         try {
-            const response = await fetch(`http://localhost:5000/post/${id}/comment`, {
+            const response = await fetch(`https://clone-book-api-29.herokuapp.com/${id}/comment`, {
                 method: "POST",
                 body: post_data,
                 headers: {

@@ -14,22 +14,25 @@ const UserList = ({ type, serachList }) => {
     useEffect(() => {
         const fetechList = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/${id}/list/?type=${type}`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${id}/list/?type=${type}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
                 const data = await response.json();
-                if (data.err) {
-                    setErrors(data);
-                } else {
-                    setList(data.user_list);
+                if (isMounted) {
+                    if (data.err) {
+                        setErrors(data);
+                    } else {
+                        setList(data.user_list);
+                    }
+                    setRefresh(false);
                 }
-                setRefresh(false);
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
+        let isMounted = true;
         if (serachList) {
             setList(serachList);
         } else {
@@ -37,6 +40,7 @@ const UserList = ({ type, serachList }) => {
             if (refresh || !list)
                 fetechList();
         }
+        return () => {isMounted = false}
     }, [type, id, refresh, list, serachList]);
 
     const refreshIt = () => {
@@ -50,7 +54,7 @@ const UserList = ({ type, serachList }) => {
                 {list && list.map(user => {
                     return (
                         <li className="user_item" key={user._id}>
-                            <Link to={`/user/${user._id}`}>
+                            <Link to={`/clone_book_page/user/${user._id}`}>
                                 <Image url={user.icon} icon="small" />
                                 <p>{user.username}</p>
                                 {type === 'pending_follower' &&

@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import uniqid from "uniqid";
 
 const Errors = ({errors}) => {
-    useEffect(() => {
-        console.log(errors);
-    }, [errors]);
-
     return(
         <div className="errors">
             {errors.err &&

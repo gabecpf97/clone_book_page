@@ -28,7 +28,7 @@ const CreatePost = () => {
         if (media)
             post_data.append('image', media);
         try {
-            const response = await fetch(`http://localhost:5000/post/create`, {
+            const response = await fetch(`https://clone-book-api-29.herokuapp.com/post/create`, {
                 method: "POST",
                 body: post_data,
                 headers: {
@@ -39,7 +39,7 @@ const CreatePost = () => {
             if (data.err) {
                 setErrors(data);
             } else {
-                nav(`/post/${data.id}`);
+                nav(`/clone_book_page/post/${data.id}`);
             }
         } catch (err) {
             setErrors({err: 'Error fetching data'});

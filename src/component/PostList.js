@@ -14,11 +14,11 @@ const PostList = ({ posts, errors, comment }) => {
                 {posts&& posts.map(post => {
                     return (
                         <li className="post" key={post._id}>
-                            <Link className="user_display" to={`/user/${post.user._id}`}>
+                            <Link className="user_display" to={`/clone_book_page/user/${post.user._id}`}>
                                 <Image url={post.user.icon} icon="small" />
                                 <p>{post.user.username}</p>
                             </Link>
-                            <Link to={`/post/${post._id}`}>
+                            <Link to={`/clone_book_page/post/${post._id}`}>
                                 <p className="post_preview_msg">{post.message}</p>
                                 {post.media && post.media.length > 0 && 
                                     <div className="frame">

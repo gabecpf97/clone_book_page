@@ -15,41 +15,45 @@ const User = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try{
-                const checkFollow = await fetch(`http://localhost:5000/user/${id}`, {
+                const checkFollow = await fetch(`https://clone-book-api-29.herokuapp.com/user/${id}`, {
                     headers : {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }    
                 });
                 const check_res = await checkFollow.json();
-                if (check_res.err) {
-                    setErrors(check_res);
-                } else if (check_res.p_user) {
-                    setUser(check_res.p_user);
-                    if (check_res.private)
-                        setRelation('private');
-                    else 
-                        setRelation('pending confirmation');
-                    setLoaded(true);
-                } else {
-                    setUser(check_res.user);
-                    if (check_res.follow)
-                        setRelation('follower');
-                    else 
-                        setRelation('public');
-                    setLoaded(true);
+                if (isMounted) {
+                    if (check_res.err) {
+                        setErrors(check_res);
+                    } else if (check_res.p_user) {
+                        setUser(check_res.p_user);
+                        if (check_res.private)
+                            setRelation('private');
+                        else 
+                            setRelation('pending confirmation');
+                        setLoaded(true);
+                    } else {
+                        setUser(check_res.user);
+                        if (check_res.follow)
+                            setRelation('follower');
+                        else 
+                            setRelation('public');
+                        setLoaded(true);
+                    }
+                    setRefresh(false);
+                    if (id === JSON.parse(localStorage.user)._id)
+                        setRelation('user');
                 }
-                setRefresh(false);
-                if (id === JSON.parse(localStorage.user)._id)
-                    setRelation('user');
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         };  
+        let isMounted = true;
         document.querySelector('head title').textContent = "User";
         if (refresh || (!user || user._id !== id)) {
             setLoaded(false);
             fetchPost();
         }
+        return () => {isMounted = false}
     }, [id, refresh, user]);
 
     const refreshIt = () => {

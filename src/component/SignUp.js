@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
@@ -71,7 +71,7 @@ const SignUp = ({ handleChange }) => {
         data.append('description', description);
         const signup_api = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/create`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/create`, {
                     method: "POST",
                     body: data,
                 });
@@ -82,7 +82,7 @@ const SignUp = ({ handleChange }) => {
                     localStorage.setItem('token', res_data.token);
                     localStorage.setItem('user', JSON.stringify(res_data.user));
                     handleChange();
-                    nav('/');
+                    nav('/clone_book_page/');
                 }
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
@@ -92,48 +92,54 @@ const SignUp = ({ handleChange }) => {
     }
 
     return (
-        <div className="sign_up">
-            <form encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
-                <FormField field_name="first_name"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onFNchange} />
-                <FormField field_name="last_name"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onLNchange} />
-                <FormField field_name="username"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onUsernameChange} />
-                <FormField field_name="email"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onEmailChange} />
-                <FormField field_name="password"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onPasswordChange} />
-                <FormField field_name="confirm"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onConfirmChange} />
-                <FormField field_name="description"
-                    field_type="textarea"
-                    field_req={false}
-                    handleChange={onDescriptionChange}
-                    value={description} />
-                <FormField field_name="private"
-                    field_type="checkbox"
-                    field_req={false}
-                    handleChange={onPrivateChange} />
-                <FormField field_name="icon"
-                    field_type="file"
-                    field_req={false}
-                    handleChange={onIconChange} />
-                <input type="submit" className="submit" value="submit" />
-                {errors && <Errors errors={errors}/>}
-            </form>
+        <div className="container">
+            <h1>Welcome to CloneBook log in or sign up to enjoy</h1>
+            <div className="sign_up">
+                <form encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
+                    <FormField field_name="first_name"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onFNchange} />
+                    <FormField field_name="last_name"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onLNchange} />
+                    <FormField field_name="username"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onUsernameChange} />
+                    <FormField field_name="email"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onEmailChange} />
+                    <FormField field_name="password"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onPasswordChange} />
+                    <FormField field_name="confirm"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onConfirmChange} />
+                    <FormField field_name="description"
+                        field_type="textarea"
+                        field_req={false}
+                        handleChange={onDescriptionChange}
+                        value={description} />
+                    <FormField field_name="private"
+                        field_type="checkbox"
+                        field_req={false}
+                        handleChange={onPrivateChange} />
+                    <FormField field_name="icon"
+                        field_type="file"
+                        field_req={false}
+                        handleChange={onIconChange} />
+                    <div className="btns">
+                        <input type="submit" className="submit" value="Sign up" />
+                        <Link className="page" to="/log_in">Log In</Link>
+                    </div>
+                    {errors && <Errors errors={errors}/>}
+                </form>
+            </div>
         </div>
     )
 }

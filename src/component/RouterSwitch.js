@@ -32,21 +32,21 @@ const RouterSwitch = () => {
         <BrowserRouter>
             <NavBar status={status}/>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/user/:id" element={<User />} />
-                <Route path="/user/serach" element={<Search />} />
-                <Route path="/user/:id/following" element={<UserList type="following" />} />
-                <Route path="/user/:id/follower" element={<UserList type="follower" />} />
-                <Route path="/user/:id/pending_following" element={<UserList type="pending_following" />} />
-                <Route path="/user/:id/pending_follower" element={<UserList type="pending_follower" />} />
-                <Route path='/post/:id' element={<Post />} />
-                <Route path='/post/create' element={<CreatePost />} />
-                <Route path='/user/edit' element={<EditProfile />} />
-                <Route path="/sign_up" element={<SignUp handleChange={updateStatus}/>} />
-                <Route path="/log_in" element={<LogIn handleChange={updateStatus}/>} />
-                <Route path="/log_out" element={<LogOut handleChange={updateStatus}/>} />
-                <Route path="/user/change_password" element={<ChangePassword handleStatus={updateStatus}/>} />
-                <Route path="/delete_user" element={<DeleteUser handleChange={updateStatus} />} />
+                <Route path="/clone_book_page/" element={<Home />} />
+                <Route path="/clone_book_page/user/:id" element={<User />} />
+                <Route path="/clone_book_page/user/serach" element={<Search />} />
+                <Route path="/clone_book_page/user/:id/following" element={<UserList type="following" />} />
+                <Route path="/clone_book_page/user/:id/follower" element={<UserList type="follower" />} />
+                <Route path="/clone_book_page/user/:id/pending_following" element={<UserList type="pending_following" />} />
+                <Route path="/clone_book_page/user/:id/pending_follower" element={<UserList type="pending_follower" />} />
+                <Route path='/clone_book_page/post/:id' element={<Post />} />
+                <Route path='/clone_book_page/post/create' element={<CreatePost />} />
+                <Route path='/clone_book_page/user/edit' element={<EditProfile />} />
+                <Route path="/clone_book_page/sign_up" element={<SignUp handleChange={updateStatus}/>} />
+                <Route path="/clone_book_page/log_in" element={<LogIn handleChange={updateStatus}/>} />
+                <Route path="/clone_book_page/log_out" element={<LogOut handleChange={updateStatus}/>} />
+                <Route path="/clone_book_page/user/change_password" element={<ChangePassword handleStatus={updateStatus}/>} />
+                <Route path="/clone_book_page/delete_user" element={<DeleteUser handleChange={updateStatus} />} />
             </Routes>
         </BrowserRouter>
     )

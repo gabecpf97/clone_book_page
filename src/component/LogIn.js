@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
@@ -18,7 +18,7 @@ const LogIn = ({ handleChange }) => {
         e.preventDefault();
         const login_api = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/user/login`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/login`, {
                     method: 'POST',
                     body: JSON.stringify({
                         email,
@@ -35,7 +35,7 @@ const LogIn = ({ handleChange }) => {
                     localStorage.setItem('token', res_data.token);
                     localStorage.setItem('user', JSON.stringify(res_data.user));
                     handleChange();
-                    nav('/');
+                    nav('/clone_book_page/');
                 }
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
@@ -53,18 +53,24 @@ const LogIn = ({ handleChange }) => {
     }
 
     return(
-        <div className="log_in_div container">
-            <form className="log_in" onSubmit={(e) => handleSubmit(e)}>
-                <FormField field_name="email"
-                    field_type="text"
-                    field_req={true}
-                    handleChange={onEmailChange} />
-                <FormField field_name="password"
-                    field_type="password"
-                    field_req={true}
-                    handleChange={onPasswordChange} />
-                <input type="submit" className="submit" value="submit" />
-            </form>
+        <div className="container">
+            <h1>Welcome to CloneBook log in or sign up to enjoy</h1>
+            <div className="log_in_div">
+                <form className="log_in" onSubmit={(e) => handleSubmit(e)}>
+                    <FormField field_name="email"
+                        field_type="text"
+                        field_req={true}
+                        handleChange={onEmailChange} />
+                    <FormField field_name="password"
+                        field_type="password"
+                        field_req={true}
+                        handleChange={onPasswordChange} />
+                        <div className="btns">
+                            <input type="submit" className="submit" value="Log In" />
+                            <Link className="page" to="/clone_book_page/sign_up">Sign up</Link>
+                        </div>
+                </form>
+            </div>
             {errors && 
                 <Errors errors={errors} />
             }

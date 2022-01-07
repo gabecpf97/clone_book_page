@@ -17,23 +17,27 @@ const Post = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try{
-                const response = await fetch(`http://localhost:5000/post/${id}`, {
+                const response = await fetch(`https://clone-book-api-29.herokuapp.com/post/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
                 const data = await response.json();
-                if (data.err) {
-                    setErrors(data);
-                } else {
-                    setPost(data.post);
+                if (isMounted) {
+                    if (data.err) {
+                        setErrors(data);
+                    } else {
+                        setPost(data.post);
+                    }
                 }
             } catch (err) {
                 setErrors({err: 'Error in fetching data, server problem'});
             }
         }
         document.querySelector('head title').textContent = "Post";
+        let isMounted = true;
         fetchPost();
+        return () => {isMounted = false}
     }, [id]);
 
     return(
@@ -41,7 +45,7 @@ const Post = () => {
             {post &&
                 <div className="post_div">
                     <div className="post_detail">
-                        <Link className="user_display" to={`/user/${post.user._id}`}>
+                        <Link className="user_display" to={`/clone_book_page/user/${post.user._id}`}>
                                 <Image url={post.user.icon} icon="small" />
                                 <p>{post.user.username}</p>
                         </Link>
