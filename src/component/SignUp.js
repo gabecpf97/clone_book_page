@@ -92,47 +92,49 @@ const SignUp = ({ handleChange }) => {
     }
 
     return (
-        <form className="sign_up container" encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
-            <FormField field_name="first_name"
-                field_type="text"
-                field_req={true}
-                handleChange={onFNchange} />
-            <FormField field_name="last_name"
-                field_type="text"
-                field_req={true}
-                handleChange={onLNchange} />
-            <FormField field_name="username"
-                field_type="text"
-                field_req={true}
-                handleChange={onUsernameChange} />
-            <FormField field_name="email"
-                field_type="text"
-                field_req={true}
-                handleChange={onEmailChange} />
-            <FormField field_name="password"
-                field_type="text"
-                field_req={true}
-                handleChange={onPasswordChange} />
-            <FormField field_name="confirm"
-                field_type="text"
-                field_req={true}
-                handleChange={onConfirmChange} />
-            <FormField field_name="description"
-                field_type="textarea"
-                field_req={false}
-                handleChange={onDescriptionChange}
-                value={description} />
-            <FormField field_name="private"
-                field_type="checkbox"
-                field_req={false}
-                handleChange={onPrivateChange} />
-            <FormField field_name="icon"
-                field_type="file"
-                field_req={false}
-                handleChange={onIconChange} />
-            <input type="submit" className="submit" value="submit" />
-            {errors && <Errors errors={errors}/>}
-        </form>
+        <div className="sign_up">
+            <form encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)}>
+                <FormField field_name="first_name"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onFNchange} />
+                <FormField field_name="last_name"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onLNchange} />
+                <FormField field_name="username"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onUsernameChange} />
+                <FormField field_name="email"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onEmailChange} />
+                <FormField field_name="password"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onPasswordChange} />
+                <FormField field_name="confirm"
+                    field_type="text"
+                    field_req={true}
+                    handleChange={onConfirmChange} />
+                <FormField field_name="description"
+                    field_type="textarea"
+                    field_req={false}
+                    handleChange={onDescriptionChange}
+                    value={description} />
+                <FormField field_name="private"
+                    field_type="checkbox"
+                    field_req={false}
+                    handleChange={onPrivateChange} />
+                <FormField field_name="icon"
+                    field_type="file"
+                    field_req={false}
+                    handleChange={onIconChange} />
+                <input type="submit" className="submit" value="submit" />
+                {errors && <Errors errors={errors}/>}
+            </form>
+        </div>
     )
 }
 

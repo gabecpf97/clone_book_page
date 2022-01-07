@@ -59,7 +59,9 @@ ul {
 }
 
 /* form */
-.create_post {
+.create_post,
+.log_in_div,
+.sign_up {
     display: flex;
     justify-content: center;
     align-content: center;

@@ -1,0 +1,12 @@
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search_bar {
+    flex-direction: row;
+    margin-top: 20px;
+}
+

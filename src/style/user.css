@@ -76,3 +76,28 @@
 .tab_content h2 {
     padding: 0px 20px;
 }
+
+.user_list {
+    width: 60vw;
+    max-width: 800px;
+    margin: 0px 20px;
+}
+
+.users {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #2a5076;
+    padding: 20px 0px;
+    border-radius: 10px;
+}
+
+.user_item a {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    padding: 5px;
+    border-radius: 10px;
+    border: #1c3249 solid;
+}

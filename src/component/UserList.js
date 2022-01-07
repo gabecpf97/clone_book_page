@@ -46,25 +46,27 @@ const UserList = ({ type, serachList }) => {
     return (
         <div className="user_list">
             <h1>{type} :</h1>
-            {list && list.map(user => {
-                return (
-                    <li className="user_item" key={user._id}>
-                        <Link to={`/user/${user._id}`}>
-                            <Image url={user.icon} icon="small" />
-                            <p>{user.username}</p>
-                            {type === 'pending_follower' &&
-                                <RelationBtn id={user._id} type='approve' />
+            <ul className="users">
+                {list && list.map(user => {
+                    return (
+                        <li className="user_item" key={user._id}>
+                            <Link to={`/user/${user._id}`}>
+                                <Image url={user.icon} icon="small" />
+                                <p>{user.username}</p>
+                                {type === 'pending_follower' &&
+                                    <RelationBtn id={user._id} type='approve' />
+                                }
+                            </Link>
+                            {type === 'follower' &&
+                                <RelationBtn id={user._id} type='remove' />
                             }
-                        </Link>
-                        {type === 'follower' &&
-                            <RelationBtn id={user._id} type='remove' />
-                        }
-                        {type === 'following' &&
-                            <RelationBtn id={user._id} type='follower' refresh={refreshIt} />
-                        }
-                    </li>
-                )
-            })}
+                            {type === 'following' &&
+                                <RelationBtn id={user._id} type='follower' refresh={refreshIt} />
+                            }
+                        </li>
+                    )
+                })}
+            </ul>
             {list && list.length < 1 &&
                 <h2>No {type.replace('_', ' ')}</h2>
             }

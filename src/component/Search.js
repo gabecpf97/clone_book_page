@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Errors from "./Errors";
 import UserList from "./UserList";
+import "../style/search.css";
 
 const Search = () => {
     const [input, setInput] = useState();
@@ -26,7 +27,7 @@ const Search = () => {
         const data = await response.json();
         console.log(data);
         if (data.err) {
-            setErrors(data);
+        setErrors(data);
         } else {
             setList(data.users);
         }
@@ -34,7 +35,7 @@ const Search = () => {
 
     return (
         <div className="search">
-            <form onSubmit={(e) => handleSearch(e)}>
+            <form className="search_bar" onSubmit={(e) => handleSearch(e)}>
                 <input type="text" required={true} onChange={(e) => onInputChange(e)} />
                 <input type="submit" value="search" />
             </form>
