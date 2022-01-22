@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
+/**
+ * Component that allow user to create comment on a post
+ */
 const CreateComment = ({ id, refresh }) => {
     const [message, setMessage] = useState();
     const [media, setMedia] = useState();
     const [errors, setErrors] = useState();
 
+    // Form control
     const onMessageChange = (e) => {
         setMessage(e.target.value);
     }
@@ -15,6 +19,10 @@ const CreateComment = ({ id, refresh }) => {
         setMedia(e.target.files[0]);
     }
 
+    /**
+     * Form submit will send a POST request to backend api and create the comment
+     * receive either success or error message, if success refresh the post page 
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const post_data = new FormData();

@@ -8,11 +8,18 @@ import LikeBtn from "./LikeBtn";
 import ShowTime from "./ShowTime";
 import "../style/commentlist.css";
 
+/**
+ * Component that display list of comment given id or a list of comment
+ */
 const CommentList = ({ id, userComment }) => {
     const [comments, setComments] = useState();
     const [errors, setErrors] = useState();
     const [reload, setReload] = useState(false);
 
+    /**
+     * When mounted or comment updated, fetching data from backend api
+     * or set the comments to be the comment pass through in paramater
+     */
     useEffect(() => {
         const fetchComment = async () => {
             try {

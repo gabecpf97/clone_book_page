@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
+/**
+ * Component that create a post
+ */
 const CreatePost = () => {
     const nav = useNavigate();
     const [message, setMessage] = useState();
@@ -13,6 +16,7 @@ const CreatePost = () => {
         document.querySelector('head title').textContent = "Create Post";
     }, []);
 
+    // Form control
     const onMessageChange = (e) => {
         setMessage(e.target.value);
     }
@@ -21,6 +25,11 @@ const CreatePost = () => {
         setMedia(e.target.files[0]);
     }
 
+    /**
+     * Form submit will send POST request to backend and create a post
+     * receive either success or error message
+     * when success go to the post's page
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const post_data = new FormData();

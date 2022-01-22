@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 
+/**
+ * Component that delete a post
+ */
 const DeletePost = ({ id, comment, refresh }) => {
     const nav = useNavigate();
     const [errors, setErrors] = useState();
     const [confirm, setConfirm] = useState(false);
 
+    /**
+     * Form submit will send DELETE request to backend api and delete the post
+     * receieve either success or error message
+     * if success go to user's account page
+     */
     const handleDelete = async () => {
         const response = await fetch(`https://clone-book-api-29.herokuapp.com/${comment ? 'comment' : 'post'}/${id}`, {
             method: "DELETE",

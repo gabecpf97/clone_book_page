@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 
+/**
+ * Component that allow user to delete account
+ */
 const DeleteUser = ({ handleChange }) => {
     const user = JSON.parse(localStorage.user);
     const nav = useNavigate();
@@ -12,11 +15,16 @@ const DeleteUser = ({ handleChange }) => {
         document.querySelector('head title').textContent = "Delete Account";
     }, []);
 
-
+    // Form control
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
     }
     
+    /**
+     * Form submit will send DELETE request to backend api and delete the user account
+     * receive either success or error message
+     * if success will go to log in page
+     */
     const handleClicked = async (e) => {
         e.preventDefault();
         const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${user._id}`, {

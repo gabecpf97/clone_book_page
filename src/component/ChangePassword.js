@@ -17,7 +17,7 @@ const ChangePassword = ({ handleStatus }) => {
         document.querySelector('head title').textContent = "Change Password";
     }, []);
 
-    // Form input control
+    // Form control
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
     }
@@ -31,7 +31,7 @@ const ChangePassword = ({ handleStatus }) => {
     }
     
     /**
-     *  Form submit will set a POST request to backend api and either receive
+     *  Form submit will set a PUT request to backend api and either receive
      * success or error messages 
      */
     const handleSubmit = async (e) => {
