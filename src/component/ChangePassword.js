@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Errors from "./Errors";
 import FormField from "./FormField";
 
+/**
+ * component that display a page for user to change account password
+ */
 const ChangePassword = ({ handleStatus }) => {
     const nav = useNavigate();
     const [password, setPassword] = useState();
@@ -14,7 +17,7 @@ const ChangePassword = ({ handleStatus }) => {
         document.querySelector('head title').textContent = "Change Password";
     }, []);
 
-
+    // Form input control
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
     }
@@ -27,6 +30,10 @@ const ChangePassword = ({ handleStatus }) => {
         setConfirm(e.target.value);
     }
     
+    /**
+     *  Form submit will set a POST request to backend api and either receive
+     * success or error messages 
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch(`https://clone-book-api-29.herokuapp.com/user/${JSON.parse(localStorage.user)._id}/password`, {
